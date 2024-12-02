@@ -1,179 +1,302 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { MdExpandMore, MdExpandLess, MdOutlineExpandMore } from "react-icons/md";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { MdExpandLess, MdOutlineExpandMore } from "react-icons/md";
 import styles from "../../styles/vote.module.scss";
 import Image from "next/image";
+import Link from "next/link";
+import { RiArrowRightUpLine } from "react-icons/ri";
 
 const VoteSection = () => {
   const [expandedItem, setExpandedItem] = useState(0);
   const [selectedProtocol, setSelectedProtocol] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchNotionData = async () => {
-  //     try {
-  //       const response = await fetch('/api/notion-proposals', {
-  //         // method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({
-  //           database_id: process.env.NEXT_PUBLIC_NOTION_PAGE_ID,
-  //         }),
-  //       });
-
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch Notion data');
-  //       }
-
-  //       const data = await response.json();
-  //       console.log("dataaaaaaa", data)
-  //       // const parsedProposals = parseNotionData(data);
-  //       // setProposals(parsedProposals);
-  //       // setLoading(false);
-  //     } catch (error) {
-  //       console.error('Error fetching Notion data:', error);
-  //       // setLoading(false);
-  //     }
-  //   };
-
-  //   fetchNotionData();
-  // }, []);
-
-  const fetchNotionData = async () => {
-    try {
-      const response = await fetch('/api/notion-proposals');
-  
-      if (!response.ok) {
-        throw new Error('Failed to fetch Notion data');
-      }
-  
-      const data = await response.json();
-      console.log("Notion page data:", data);
-      
-      // Now you can process the blocks to extract the information you need
-      const blocks = data.blocks;
-      
-      // Example of processing blocks:
-      blocks.forEach(block => {
-        if (block.type === 'heading_1') {
-          console.log('Heading:', block.heading_1.rich_text[0].plain_text);
-        }
-        // Add more conditions based on the block types you want to process
-      });
-      
-    } catch (error) {
-      console.error('Error fetching Notion data:', error);
-    }
-  };
-
+  const [proposals, setProposals] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const protocols = [
     {
-      name: "arbitrum",
+      name: "Arbitrum", // Changed to proper display name
+      value: "arbitrum", // Added value for internal handling
       icon: "/governance/arbitrum.svg",
+      link: "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642",
     },
     {
-      name: "optimism",
+      name: "Optimism", // Changed to proper display name
+      value: "optimism",
       icon: "/governance/optimism.svg",
+      link: "",
     },
     {
-      name: "uniswap",
+      name: "Uniswap", // Changed to proper display name
+      value: "uniswap",
       icon: "/governance/uniswap.svg",
+      link: "",
     },
     {
-      name: "gnosis",
-      icon: "/governance/gnosis.svg",
+      name: "ENS", // Changed to proper display name
+      value: "ens",
+      icon: "/governance/ens.svg",
+      link: "",
     },
   ];
 
-  const proposals = [
-    {
-      id: 1,
-      protocol: "arbitrum",
-      icon: "/governance/arbitrum.svg",
-      title: "ARB Staking: Unlock ARB Utility and Align Governance",
-      tag: "Grants",
-      result: "For",
-      content:
-        "We vote 'yes' to support activating the additional bps fee tiers as a time-bound experiment. By implementing these for a defined period, we can gather valuable data on their impact on trading volume, revenue, and market share. If successful, this experiment could inform future strategies not just on Base, but potentially on other chains as well. However, our support for this snapshot does not automatically extend to an on-chain vote. We expect to see more comprehensive research conducted and clear answers about the plan and details of community remaining questions.",
-      voter: {
-        icon: "🌐",
-        name: "Curia - curia-delegate.eth",
-        date: "On Aug 9, 2024",
-      },
-    },
-    {
-      id: 2,
-      protocol: "optimism",
-      icon: "/governance/optimism.svg",
-      title: "Upgrade Proposal #10: Granite Network Upgrade",
-      tag: "Network Upgrade",
-      result: "For",
-      content:
-        "We vote 'yes' to support activating the additional bps fee tiers as a time-bound experiment. By implementing these for a defined period, we can gather valuable data on their impact on trading volume, revenue, and market share. If successful, this experiment could inform future strategies not just on Base, but potentially on other chains as well. However, our support for this snapshot does not automatically extend to an on-chain vote. We expect to see more comprehensive research conducted and clear answers about the plan and details of community remaining questions.",
-      voter: {
-        icon: "🌐",
-        name: "Curia - curia-delegate.eth",
-        date: "On Aug 23, 2024",
-      },
-    },
-    {
-      id: 3,
-      protocol: "uniswap",
-      icon: "/governance/uniswap.svg",
-      title:
-        "[Temp Check] Activate 2, 3, 4 bps fee tiers on Uniswap v3 on Base",
-      tag: "Protocol Upgrade",
-      result: "For",
-      content:
-        "We vote 'yes' to support activating the additional bps fee tiers as a time-bound experiment. By implementing these for a defined period, we can gather valuable data on their impact on trading volume, revenue, and market share. If successful, this experiment could inform future strategies not just on Base, but potentially on other chains as well. However, our support for this snapshot does not automatically extend to an on-chain vote. We expect to see more comprehensive research conducted and clear answers about the plan and details of community remaining questions.",
-      voter: {
-        icon: "🌐",
-        name: "Curia - curia-delegate.eth",
-        date: "On Aug 19, 2024",
-      },
-    },
-    {
-      id: 4,
-      protocol: "gnosis",
-      icon: "/governance/gnosis.svg",
-      title:
-        "GIP-110: Should the Gnosis DAO create and fund a Gnosis Pay rewards program with 10k GNO?",
-      tag: "Grant",
-      result: "For",
-      content:
-        "We vote 'yes' to support activating the additional bps fee tiers as a time-bound experiment. By implementing these for a defined period, we can gather valuable data on their impact on trading volume, revenue, and market share. If successful, this experiment could inform future strategies not just on Base, but potentially on other chains as well. However, our support for this snapshot does not automatically extend to an on-chain vote. We expect to see more comprehensive research conducted and clear answers about the plan and details of community remaining questions.",
-      voter: {
-        icon: "🌐",
-        name: "Curia - curia-delegate.eth",
-        date: "On Aug 9, 2024",
-      },
-    },
-    {
-      id: 5,
-      protocol: "arbitrum",
-      icon: "/governance/arbitrum.svg",
-      title: "Should the DAO Create COI & Self Voting Policies?",
-      tag: "Policy Update",
-      result: "For",
-      content:
-        "We vote 'yes' to support activating the additional bps fee tiers as a time-bound experiment. By implementing these for a defined period, we can gather valuable data on their impact on trading volume, revenue, and market share. If successful, this experiment could inform future strategies not just on Base, but potentially on other chains as well. However, our support for this snapshot does not automatically extend to an on-chain vote. We expect to see more comprehensive research conducted and clear answers about the plan and details of community remaining questions.",
-      voter: {
-        icon: "🌐",
-        name: "Curia - curia-delegate.eth",
-        date: "On Aug 16, 2024",
-      },
-    },
-  ];
+  // Function to parse forum URL and extract post ID and post number
+  const parseForumUrl = (url) => {
+    try {
+      const urlWithoutQuery = url.split("?")[0];
+      const matches = urlWithoutQuery.match(/\/(\d+)\/(\d+)$/);
+      if (!matches) return null;
+
+      return {
+        postId: matches[1],
+        postNumber: matches[2],
+      };
+    } catch (error) {
+      console.error("Error parsing forum URL:", error);
+      return null;
+    }
+  };
+
+  const fetchForumPost = async (url) => {
+    try {
+      // Parse the forum URL to extract relevant details
+      const parsed = parseForumUrl(url);
+      if (!parsed) return null;
+
+      const { postId, postNumber } = parsed;
+
+      // Call the API route handler on your server
+      const response = await fetch(
+        `/api/fetch-forum-post?postId=${postId}&postNumber=${postNumber}`
+      );
+      const data = await response.json();
+
+      // Return both cooked content and created_at
+      return {
+        content: data?.cooked || null,
+        createdAt: data?.created_at || null,
+      };
+    } catch (error) {
+      console.error("Error fetching forum post:", error);
+      return null;
+    }
+  };
+
+  const determineProtocol = (forumLink, commentlink) => {
+    const link = forumLink.toLowerCase();
+    // const comment = commentlink.toLowerCase();
+
+    if (link.includes("arbitrum")) return "Arbitrum";
+    if (link.includes("optimism")) return "Optimism";
+    if (link.includes("uniswap")) return "Uniswap";
+    if (link.includes("ens")) return "ENS";
+    return "Arbitrum"; // default fallback
+  };
+
+  // Function to determine icon based on protocol
+  const getProtocolIcon = (protocol) => {
+    return `/governance/${protocol}.svg`;
+  };
+
+  const fetchProposals = useCallback(async () => {
+    try {
+      setLoading(true);
+      // Find the protocol object from the protocols array
+      const protocolObj = protocols.find((p) => p.name === selectedProtocol);
+      // Use the value (lowercase) for API calls
+      const queryString = protocolObj ? `?protocol=${protocolObj.value}` : "";
+      const response = await fetch(`/api/notion-proposals${queryString}`);
+      const data = await response.json();
+
+      if (data.success && data.data) {
+        // Flatten proposals from all months
+        const allProposals = data.data.reduce((acc, monthData) => {
+          if (monthData && Array.isArray(monthData.proposals)) {
+            return [...acc, ...monthData.proposals];
+          }
+          return acc;
+        }, []);
+
+        const validProposals = allProposals.filter(
+          (proposal) =>
+            proposal["Our Comments Link"] && proposal["Commented By"]
+        );
+
+        const transformedProposals = await Promise.allSettled(
+          validProposals.slice(0, 5).map(async (proposal, index) => {
+            // Get the display name for the protocol
+            const protocol = determineProtocol(
+              proposal["Forum Post Link"] || "",
+              proposal["Our Comments Link"] || ""
+            );
+
+            // Rest of your transformation code...
+            let date = new Date();
+            if (proposal["Start Date"]) {
+              const [day, month, year] = proposal["Start Date"].split("/");
+              date = new Date(year, month - 1, day);
+            }
+
+            let forumContent = null;
+            let forumCreatedAt = null;
+            if (proposal["Our Comments Link"]) {
+              try {
+                const rawContent = await fetchForumPost(
+                  proposal["Our Comments Link"]
+                );
+                forumContent = processForumContent(rawContent.content);
+                forumCreatedAt = rawContent?.createdAt || null;
+              } catch (error) {
+                console.error("Failed to fetch forum content:", error);
+              }
+            }
+
+            return {
+              id: index + 1,
+              protocol: protocol, // This will now be properly capitalized
+              icon: getProtocolIcon(protocol.toLowerCase()),
+              title: proposal["Proposal Name"] || "Untitled Proposal",
+              tag: "Governance",
+              result: proposal["Voted"],
+              content: proposal["Comment Draft"] || "",
+              commentLink: proposal["Our Comments Link"] || "",
+              forumContent: forumContent,
+              forumCreatedAt: forumCreatedAt,
+              voter: {
+                icon: "/governance/voter.svg",
+                name: proposal["Commented By"] || "Anonymous",
+                date: `On ${date.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}`,
+              },
+              type: proposal["Type"],
+            };
+          })
+        );
+
+        const successfulProposals = transformedProposals
+          .filter((result) => result.status === "fulfilled")
+          .map((result) => result.value);
+
+        setProposals(successfulProposals);
+      }
+    } catch (error) {
+      console.error("Failed to fetch proposals:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedProtocol]);
+
+  // Update useEffect to reset the expanded item when protocol changes
+  useEffect(() => {
+    setExpandedItem(null); // Reset expanded item when protocol changes
+    fetchProposals();
+  }, [fetchProposals, selectedProtocol]);
+
+  // Content processing function
+  const processForumContent = (content) => {
+    const baseUrl = "https://forum.arbitrum.foundation";
+  
+    // Replace relative URLs with absolute URLs
+    const updatedContent = content.replace(
+      /href="\/(?!\/)/g, // Match hrefs that start with a single "/"
+      `href="${baseUrl}/`
+    );
+  
+    // Ensure all anchor tags open in a new tab with security attributes
+    const updatedLinks = updatedContent.replace(
+      /<a\b([^>]*?)>/g, // Match all anchor tags
+      '<a target="_blank" rel="noopener noreferrer" $1>'
+    );
+  
+    // Remove HTML tags for images
+    const contentWithoutImages = updatedLinks.replace(/<img[^>]*>/g, "");
+  
+    // Process blockquotes with username
+    const processedContent = contentWithoutImages.replace(
+      /<aside[^>]*data-username="([^"]*)"[^>]*>.*?<blockquote>/gs,
+      (match, username) => `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
+    );
+  
+    // Clean up closing tags
+    const finalContent = processedContent.replace(
+      /<\/blockquote><\/aside>/g,
+      '</blockquote></div>'
+    );
+  
+    return finalContent;
+  };
+
+  // const filteredProposals =
+  //   selectedProtocol === null
+  //     ? proposals // Show all proposals when no protocol is selected
+  //     : proposals.filter(
+  //         (proposal) =>
+  //           proposal.protocol.toLowerCase() === selectedProtocol.toLowerCase()
+  //       );
 
   const filteredProposals = selectedProtocol
-    ? proposals.filter((proposal) => proposal.protocol === selectedProtocol)
+    ? proposals.filter(
+        (proposal) =>
+          proposal.protocol.toLowerCase() === selectedProtocol.toLowerCase()
+      )
     : proposals;
+
+  const SkeletonLoader = () => {
+    return (
+      <div className={styles.skeletonList}>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <div key={index} className={styles.skeletonItem}></div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className={styles.outerdiv}>
+      {/* Our Delegations Section */}
+      <div className={styles.delegationsSection}>
+        <h2 className={styles.delegationsHeading}>Our Delegations</h2>
+        <div className={styles.delegationsContainer}>
+          {protocols.map((protocol, index) =>
+            protocol.link ? (
+              <a
+                key={index}
+                href={protocol.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.delegationCard}
+              >
+                <Image
+                  src={protocol.icon}
+                  alt={`${protocol.name} Icon`}
+                  width={50}
+                  height={50}
+                />
+                <p>{protocol.name}</p>
+              </a>
+            ) : (
+              <div key={index} className={styles.delegationCard}>
+                <Image
+                  src={protocol.icon}
+                  alt={`${protocol.name} Icon`}
+                  width={50}
+                  height={50}
+                />
+                <p>
+                  {" "}
+                  {protocol.name.charAt(0).toUpperCase() +
+                    protocol.name.slice(1)}
+                </p>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+
       <div className={styles.upperpart}>
-        <h1 className={styles.heading}>Recent Voted</h1>
+        <h1 className={styles.heading}>Recent Votes</h1>
         <div className={styles.filter}>
           {protocols.map((protocol) => (
             <button
@@ -184,79 +307,190 @@ const VoteSection = () => {
                 )
               }
               className={`${styles.protocolButton} ${
-                selectedProtocol === protocol.name ? styles.active : ''
-              }`}            >
+                selectedProtocol === protocol.name ? styles.active : ""
+              }`}
+            >
               <Image
                 src={protocol.icon}
                 alt={`${protocol.name} icon`}
-                width={30}
-                height={30}
+                width={24}
+                height={24}
               />
+              <p>{protocol.name}</p>
             </button>
           ))}
         </div>
       </div>
 
-      {filteredProposals.map((proposal, index) => (
-        <div key={proposal.id} className={styles.votelist}>
-          <div
-            className={styles.votes}
-            onClick={() =>
-              setExpandedItem(expandedItem === index ? null : index)
-            }
-          >
-            <div className={styles.left}>
-              <span className={styles.icon}>
-                <Image
-                  src={proposal.icon}
-                  alt={`Proposal ${proposal.id} icon`}
-                  width={40}
-                  height={40}
-                />
-              </span>
-              <div className={styles.content}>
-                <h3 className={styles.contentTitle}>{proposal.title}</h3>
-                <span className={styles.contentTag}>{proposal.tag}</span>
+      {loading ? (
+        <SkeletonLoader /> // Render SkeletonLoader while loading is true
+      ) : (
+        proposals.map((proposal, index) => (
+          <div key={proposal.id} className={styles.votelist}>
+            <div
+              className={styles.votes}
+              onClick={() =>
+                setExpandedItem(expandedItem === index ? null : index)
+              }
+            >
+              <div className={styles.left}>
+                <span className={styles.icon}>
+                  <Image
+                    src={proposal.icon}
+                    alt={`Proposal ${proposal.id} icon`}
+                    width={40}
+                    height={40}
+                  />
+                </span>
+                <div className={styles.content}>
+                  <h3 className={styles.contentTitle}>{proposal.title}</h3>
+                  <div className={styles.chainDiv}>
+                    <span
+                      className={`${styles.arbitrumTag} ${
+                        styles[`${proposal.protocol.toLowerCase()}-tag`]
+                      }`}
+                    >
+                      {proposal.protocol.charAt(0).toUpperCase() +
+                        proposal.protocol.slice(1)}
+                    </span>
+                    <span
+                      className={` ${styles.votingCommon} ${
+                        proposal.type === "On-chain Voting"
+                          ? styles.onchain
+                          : styles.offchain
+                      }`}
+                    >
+                      {proposal.type}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.right}>
+                <div className={styles.result}>
+                  <span className={styles.r1}>Voted</span>
+                  <span
+                    className={`${styles.r2} ${
+                      proposal.result === "For"
+                        ? styles.for
+                        : proposal.result === "Against"
+                        ? styles.against
+                        : proposal.result === "Abstain"
+                        ? styles.abstain
+                        : styles.for
+                    }`}
+                  >
+                    {proposal.result}
+                  </span>
+                </div>
+                {expandedItem === index ? (
+                  <MdExpandLess className={styles.arrowyellow} />
+                ) : (
+                  <MdOutlineExpandMore className={styles.arrowwhite} />
+                )}
               </div>
             </div>
-            <div className={styles.right}>
-              <div className={styles.result}>
-                <span className={styles.r1}>Result</span>
-                <span className={styles.r2}>{proposal.result}</span>
-              </div>
-              {expandedItem === index ? (
-                <MdExpandLess className={styles.arrowyellow} />
-              ) : (
-                <MdOutlineExpandMore className={styles.arrowwhite} />
-              )}
-            </div>
-          </div>
 
-          {expandedItem === index && proposal.content && (
-            <div className={styles.belowdiv}>
-              {proposal.voter && (
-                <div className={styles.voter}>
-                  <div className={styles.profile}>
-                    <div className={styles.profileicon}>
-                      {proposal.voter.icon}
-                    </div>
-                    <div className={styles.profilecontent}>
-                      <div>{proposal.voter.name}</div>
-                      <div className={styles.dateline}>
-                        Vote{" "}
-                        <span className={styles.for}>{proposal.result}</span> on{" "}
-                        {proposal.voter.date}
+            {expandedItem === index && (
+              <div className={styles.belowdiv}>
+                {proposal.voter && (
+                  <div className={styles.voter}>
+                    <div className={styles.profile}>
+                      <div className={styles.profileicon}>
+                        <Image
+                          src={proposal.voter.icon}
+                          alt={`${proposal.voter.name} icon`}
+                          width={32} // Adjust dimensions as needed
+                          height={32}
+                        />
+                      </div>
+                      <div className={styles.profilecontent}>
+                        <div>{proposal.voter.name}</div>
+                        <div className={styles.dateline}>
+                          Voted{" "}
+                          <span
+                            className={`${styles.r2} ${
+                              proposal.result === "For"
+                                ? styles.for
+                                : proposal.result === "Against"
+                                ? styles.against
+                                : proposal.result === "Abstain"
+                                ? styles.abstain
+                                : styles.for
+                            }`}
+                          >
+                            {proposal.result}
+                          </span>{" "}
+                          on{" "}
+                          {proposal.forumCreatedAt && (
+                            <span className={styles.dateVote}>
+                              {new Date(
+                                proposal.forumCreatedAt
+                              ).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <p className={styles.comment}>{proposal.content}</p>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      ))}
+                    <div className={styles.comment}>
+                      <div className={styles.rationaleDiv}>
+                        <span className={styles.rationale}>Rationale</span>
+                      </div>
+                      {proposal.forumContent ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: proposal.forumContent,
+                          }}
+                        />
+                      ) : (
+                        <p>{proposal.commentLink}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ))
+      )}
+
+      <div className={styles.btnGovernanceDiv}>
+        <a
+          href="https://lamprosdao.notion.site/governance"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.btnGovernance}
+        >
+          See more
+        </a>
+      </div>
+
+      <div className={styles.delegateNow}>
+        <h1 className={styles.delegateNowHeading}>Delegate to Lampros DAO</h1>
+        <p className={styles.delegateNowPara}>
+          Your delegation matters. By delegating your tokens to our team, you
+          enable us to represent your interests and drive meaningful governance
+          decisions. Empower effective governance in Web3.
+          <br />
+          <br />
+          Delegate your tokens to our team and become a part of shaping the
+          future of decentralized ecosystems.
+        </p>
+        <Link
+          href="https://app.chora.club/arbitrum/0xa2d590fee197c0b614fe7c3e10303327f38c0dc3?active=info"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          <button className={styles.delegateNowButton}>
+            Delegate <RiArrowRightUpLine className={styles.upErrow} />
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

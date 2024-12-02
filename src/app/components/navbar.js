@@ -88,6 +88,19 @@ function Navbar() {
                 ABOUT US
               </Link>
             </li>
+            <li
+              className={`nav-item three-d ${
+                pathname == "/governance" ? "active" : ""
+              }`}
+            >
+              <Link
+                className="nav-link"
+                href="/governance"
+                onClick={() => handleNavClick()}
+              >
+                GOVERNANCE
+              </Link>
+            </li>
             <li className={`nav-item three-d `}>
               <Link
                 className="nav-link "
@@ -126,19 +139,6 @@ function Navbar() {
                 </li>
               </ul>
             </li>
-            {/* <li
-              className={`nav-item three-d ${
-                pathname == "/governance" ? "active" : ""
-              }`}
-            >
-              <Link
-                className="nav-link"
-                href="/governance"
-                onClick={() => handleNavClick()}
-              >
-                GOVERNANCE
-              </Link>
-            </li> */}
          
             {/* <li
               className={`nav-item three-d ${
