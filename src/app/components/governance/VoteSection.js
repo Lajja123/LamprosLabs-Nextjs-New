@@ -110,7 +110,7 @@ const VoteSection = () => {
       if (data.success && data.data) {
         const validProposals = data.data.filter(
           (proposal) =>
-            proposal["Our Comments Link"] && proposal["Commented By"]
+            proposal["Communication Rationale"] && proposal["Commented By"]
         );
 
         const transformedProposals = await Promise.allSettled(
@@ -118,7 +118,7 @@ const VoteSection = () => {
             // Get the display name for the protocol
             const protocol = determineProtocol(
               proposal["Forum Post Link"] || "",
-              proposal["Our Comments Link"] || ""
+              proposal["Communication Rationale"] || ""
             );
 
             // Rest of your transformation code...
@@ -130,10 +130,10 @@ const VoteSection = () => {
 
             let forumContent = null;
             let forumCreatedAt = null;
-            if (proposal["Our Comments Link"]) {
+            if (proposal["Communication Rationale"]) {
               try {
                 const rawContent = await fetchForumPost(
-                  proposal["Our Comments Link"]
+                  proposal["Communication Rationale"]
                 );
                 forumContent = processForumContent(rawContent.content);
                 forumCreatedAt = rawContent?.createdAt || null;
@@ -150,7 +150,7 @@ const VoteSection = () => {
               tag: "Governance",
               result: proposal["Voted"],
               content: proposal["Comment Draft"] || "",
-              commentLink: proposal["Our Comments Link"] || "",
+              commentLink: proposal["Communication Rationale"] || "",
               forumContent: forumContent,
               forumCreatedAt: forumCreatedAt,
               voter: {
@@ -189,35 +189,34 @@ const VoteSection = () => {
   // Content processing function
   const processForumContent = (content) => {
     const baseUrl = "https://forum.arbitrum.foundation";
-
+  
     // Replace relative URLs with absolute URLs
     const updatedContent = content.replace(
       /href="\/(?!\/)/g, // Match hrefs that start with a single "/"
       `href="${baseUrl}/`
     );
-
+  
     // Ensure all anchor tags open in a new tab with security attributes
     const updatedLinks = updatedContent.replace(
       /<a\b([^>]*?)>/g, // Match all anchor tags
       '<a target="_blank" rel="noopener noreferrer" $1>'
     );
-
+  
     // Remove HTML tags for images
     const contentWithoutImages = updatedLinks.replace(/<img[^>]*>/g, "");
-
+  
     // Process blockquotes with username
     const processedContent = contentWithoutImages.replace(
       /<aside[^>]*data-username="([^"]*)"[^>]*>.*?<blockquote>/gs,
-      (match, username) =>
-        `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
+      (match, username) => `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
     );
-
+  
     // Clean up closing tags
     const finalContent = processedContent.replace(
       /<\/blockquote><\/aside>/g,
-      "</blockquote></div>"
+      '</blockquote></div>'
     );
-
+  
     return finalContent;
   };
 

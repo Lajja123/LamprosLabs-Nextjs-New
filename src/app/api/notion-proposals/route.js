@@ -30,10 +30,22 @@ function extractPlainText(property) {
 }
 
 const PROTOCOL_PAGE_MAPPING = {
-  arbitrum: ["NEXT_PUBLIC_NOTION_PAGE_ID1", "NEXT_PUBLIC_NOTION_PAGE_ID2"],
-  optimism: ["NEXT_PUBLIC_NOTION_PAGE_ID3", "NEXT_PUBLIC_NOTION_PAGE_ID4"],
-  uniswap: ["NEXT_PUBLIC_NOTION_PAGE_ID5", "NEXT_PUBLIC_NOTION_PAGE_ID6"],
-  ens: ["NEXT_PUBLIC_NOTION_PAGE_ID7", "NEXT_PUBLIC_NOTION_PAGE_ID8"],
+  arbitrum: [
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID1", votingType: "Off-chain Voting" },
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID2", votingType: "On-chain Voting" }
+  ],
+  optimism: [
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID3", votingType: "Off-chain Voting" },
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID4", votingType: "On-chain Voting" }
+  ],
+  uniswap: [
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID5", votingType: "Off-chain Voting" },
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID6", votingType: "On-chain Voting" }
+  ],
+  ens: [
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID7", votingType: "Off-chain Voting" },
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID8", votingType: "On-chain Voting" }
+  ]
 };
 
 export async function GET(request) {
@@ -64,18 +76,14 @@ export async function GET(request) {
 
     if (selectedProtocol && PROTOCOL_PAGE_MAPPING[selectedProtocol]) {
       pageIdsToUse = PROTOCOL_PAGE_MAPPING[selectedProtocol].map(
-        (envKey) => process.env[envKey]
+        (item) => process.env[item.id]
       );
     } else {
       pageIdsToUse = [
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID1,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID2,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID3,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID4,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID5,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID6,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID7,
-        process.env.NEXT_PUBLIC_NOTION_PAGE_ID8,
+        ...PROTOCOL_PAGE_MAPPING.arbitrum.map((item) => process.env[item.id]),
+        ...PROTOCOL_PAGE_MAPPING.optimism.map((item) => process.env[item.id]),
+        ...PROTOCOL_PAGE_MAPPING.uniswap.map((item) => process.env[item.id]),
+        ...PROTOCOL_PAGE_MAPPING.ens.map((item) => process.env[item.id])
       ];
     }
 
@@ -100,13 +108,19 @@ export async function GET(request) {
     }
 
     // Format page IDs and determine voting type based on original index in the full array
-    const formattedPageIds = validPageIds.map((id) => {
-      // Find the original index of this page ID in the complete set of page IDs
-      const originalIndex = Object.values(process.env).indexOf(id);
+    const formattedPageIds = validPageIds.map((id, index) => {
+      // Find the protocol and the voting type for this ID
+      const protocol = Object.keys(PROTOCOL_PAGE_MAPPING).find(proto => 
+        PROTOCOL_PAGE_MAPPING[proto].some(item => process.env[item.id] === id)
+      );
+    
+      const votingType = protocol 
+        ? PROTOCOL_PAGE_MAPPING[protocol].find(item => process.env[item.id] === id).votingType
+        : (index % 2 === 0 ? "Off-chain Voting" : "On-chain Voting");
+    
       return {
         id: id.replace(/-/g, ""),
-        votingType:
-          originalIndex % 2 === 0 ? "On-chain Voting" : "Off-chain Voting",
+        votingType
       };
     });
 
