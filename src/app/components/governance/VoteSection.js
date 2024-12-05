@@ -108,15 +108,7 @@ const VoteSection = () => {
       const data = await response.json();
 
       if (data.success && data.data) {
-        // Flatten proposals from all months
-        const allProposals = data.data.reduce((acc, monthData) => {
-          if (monthData && Array.isArray(monthData.proposals)) {
-            return [...acc, ...monthData.proposals];
-          }
-          return acc;
-        }, []);
-
-        const validProposals = allProposals.filter(
+        const validProposals = data.data.filter(
           (proposal) =>
             proposal["Our Comments Link"] && proposal["Commented By"]
         );
@@ -197,51 +189,37 @@ const VoteSection = () => {
   // Content processing function
   const processForumContent = (content) => {
     const baseUrl = "https://forum.arbitrum.foundation";
-  
+
     // Replace relative URLs with absolute URLs
     const updatedContent = content.replace(
       /href="\/(?!\/)/g, // Match hrefs that start with a single "/"
       `href="${baseUrl}/`
     );
-  
+
     // Ensure all anchor tags open in a new tab with security attributes
     const updatedLinks = updatedContent.replace(
       /<a\b([^>]*?)>/g, // Match all anchor tags
       '<a target="_blank" rel="noopener noreferrer" $1>'
     );
-  
+
     // Remove HTML tags for images
     const contentWithoutImages = updatedLinks.replace(/<img[^>]*>/g, "");
-  
+
     // Process blockquotes with username
     const processedContent = contentWithoutImages.replace(
       /<aside[^>]*data-username="([^"]*)"[^>]*>.*?<blockquote>/gs,
-      (match, username) => `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
+      (match, username) =>
+        `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
     );
-  
+
     // Clean up closing tags
     const finalContent = processedContent.replace(
       /<\/blockquote><\/aside>/g,
-      '</blockquote></div>'
+      "</blockquote></div>"
     );
-  
+
     return finalContent;
   };
-
-  // const filteredProposals =
-  //   selectedProtocol === null
-  //     ? proposals // Show all proposals when no protocol is selected
-  //     : proposals.filter(
-  //         (proposal) =>
-  //           proposal.protocol.toLowerCase() === selectedProtocol.toLowerCase()
-  //       );
-
-  const filteredProposals = selectedProtocol
-    ? proposals.filter(
-        (proposal) =>
-          proposal.protocol.toLowerCase() === selectedProtocol.toLowerCase()
-      )
-    : proposals;
 
   const SkeletonLoader = () => {
     return (
@@ -471,15 +449,21 @@ const VoteSection = () => {
 
       <div className={styles.delegateNow}>
         <h1 className={styles.delegateNowHeading}>Delegate to Lampros DAO</h1>
-        <p className={styles.delegateNowPara}>
-          Your delegation matters. By delegating your tokens to our team, you
-          enable us to represent your interests and drive meaningful governance
-          decisions. Empower effective governance in Web3.
+        <div className={styles.delegateNowPara}>
+          <div>Your delegation matters !! </div>
           <br />
+          <div>
+            By delegating your tokens to our team, you enable us to represent
+            your interests and drive meaningful governance decisions. Empower
+            effective governance in Web3.
+          </div>
           <br />
-          Delegate your tokens to our team and become a part of shaping the
-          future of decentralized ecosystems.
-        </p>
+
+          <div>
+            Delegate your tokens to our team and become a part of shaping the
+            future of decentralized ecosystems.
+          </div>
+        </div>
         <Link
           href="https://app.chora.club/arbitrum/0xa2d590fee197c0b614fe7c3e10303327f38c0dc3?active=info"
           target="_blank"

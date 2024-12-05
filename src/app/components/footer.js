@@ -10,6 +10,7 @@ import twitter from "../assets/images/twitter.png";
 import mirror from "../assets/images/mirror.png";
 import telegram from "../assets/images/telegram.png";
 import farcaster from "../assets/images/farcaster.png";
+import linkedin from "../assets/images/linkedin.png";
 import footerStyles from "../styles/footer.module.scss";
 
 export default function Footer() {
@@ -55,13 +56,13 @@ export default function Footer() {
       </div>
 
       <div className={footerStyles.footerIconMain}>
-        <Link href="https://twitter.com/lamproslabsdao" target="_blank">
+        <Link href="https://x.com/lamprosdao" target="_blank">
           <Image src={twitter} className={footerStyles.footerIcon} alt="Twitter" />
         </Link>
         <Link href="https://discord.gg/5jxNq8bDt2" target="_blank">
           <Image src={discord} className={footerStyles.footerIcon} alt="Discord" />
         </Link>
-        <Link href="https://t.me/lamproslabsdao" target="_blank">
+        <Link href="https://t.me/+7I_N47MwS7VlMDJl" target="_blank">
           <Image src={telegram} className={footerStyles.footerIcon} alt="Telegram" />
         </Link>
         <Link href="https://mirror.xyz/0xF362eaCAf0a28651d6f6218e5fD0Faf360fa779F" target="_blank">
@@ -69,6 +70,9 @@ export default function Footer() {
         </Link>
         <Link href="https://warpcast.com/lamproslabsdao" target="_blank">
           <Image src={farcaster} className={footerStyles.footerIcon} alt="Farcaster" />
+        </Link>
+        <Link href="https://www.linkedin.com/company/lamprosdao/" target="_blank">
+          <Image src={linkedin} className={footerStyles.footerIcon} alt="LinkedIn" />
         </Link>
       </div>
       

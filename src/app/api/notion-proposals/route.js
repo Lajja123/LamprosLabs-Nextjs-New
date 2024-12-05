@@ -4,149 +4,29 @@ const notion = new Client({
   auth: process.env.NOTION_API_KEY,
 });
 
-function extractCellContent(cell) {
-  if (!cell || cell.length === 0) return "";
-  return cell[0].plain_text || "";
-}
+function extractPlainText(property) {
+  // Function to extract plain text from different Notion property types
+  if (!property) return "";
 
-async function extractTableData(blocks, label) {
-  const monthTables = [];
-
-  for (const block of blocks) {
-    if (block.type === "toggle" && block.has_children) {
-      const monthMatch = block.toggle.rich_text[0].text.content.match(
-        /(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/
-      );
-
-      if (monthMatch) {
-        const monthData = {
-          month: monthMatch[1],
-          year: monthMatch[2],
-          proposals: [],
-        };
-
-        const tableBlocks = await getAllBlocksRecursively(block.id);
-        const tableBlock = tableBlocks.find((b) => b.type === "table");
-
-        if (tableBlock) {
-          const rows = await notion.blocks.children.list({
-            block_id: tableBlock.id,
-          });
-
-          let headers = [];
-          if (rows.results.length > 0) {
-            headers = rows.results[0].table_row.cells.map(
-              (cell) => extractCellContent(cell) || "unnamed_column"
-            );
-          }
-
-          for (let i = 1; i < rows.results.length; i++) {
-            const row = rows.results[i];
-            if (row.type === "table_row") {
-              const rowData = {};
-
-              row.table_row.cells.forEach((cell, index) => {
-                const headerKey = headers[index] || `column${index}`;
-                rowData[headerKey] = extractCellContent(cell);
-              });
-
-              // Add the label to the row data
-              rowData["Type"] = label;
-              monthData.proposals.push(rowData);
-            }
-          }
-
-          // Sort proposals by Sr. No. in descending order
-          monthData.proposals.sort((a, b) => {
-            const srNoA = parseInt(a["Sr. No."] || "0", 10);
-            const srNoB = parseInt(b["Sr. No."] || "0", 10);
-            return srNoB - srNoA; // Descending order
-          });
-        }
-
-        monthTables.push(monthData);
-      }
-    }
+  // Handle rich_text type
+  if (property.type === "rich_text" && property.rich_text.length > 0) {
+    return property.rich_text
+      .map((item) => {
+        if (item.type === "text") return item.plain_text;
+        if (item.type === "mention") return item.plain_text;
+        return "";
+      })
+      .filter((text) => text.trim() !== "")
+      .join(" ");
   }
 
-  return monthTables;
-}
-
-async function getAllBlocksRecursively(blockId) {
-  const blocks = [];
-  let cursor;
-
-  while (true) {
-    const { results, next_cursor } = await notion.blocks.children.list({
-      block_id: blockId,
-      start_cursor: cursor,
-      page_size: 100,
-    });
-
-    blocks.push(...results);
-
-    if (!next_cursor) break;
-    cursor = next_cursor;
+  // Handle title type
+  if (property.type === "title" && property.title.length > 0) {
+    return property.title.map((item) => item.plain_text).join(" ");
   }
 
-  for (let i = 0; i < blocks.length; i++) {
-    const block = blocks[i];
-    if (block.has_children) {
-      block.children = await getAllBlocksRecursively(block.id);
-    }
-  }
-
-  return blocks;
-}
-
-// Updated combineAndSortMonthlyData function (remains the same as in previous response)
-function combineAndSortMonthlyData(monthlyDataArrays) {
-  const monthMap = new Map();
-
-  const parseDate = (dateStr) => {
-    if (!dateStr) return null;
-    const [day, month, year] = dateStr.split("/");
-    return new Date(`${year}-${month}-${day}`);
-  };
-
-  monthlyDataArrays.forEach((monthData) => {
-    const key = `${monthData.year}-${monthData.month}`;
-    if (!monthMap.has(key)) {
-      monthMap.set(key, {
-        month: monthData.month,
-        year: monthData.year,
-        proposals: [],
-      });
-    }
-    monthMap.get(key).proposals.push(...monthData.proposals);
-  });
-
-  const combinedData = Array.from(monthMap.values());
-
-  combinedData.sort((a, b) => {
-    const dateA = new Date(`${a.month} 1, ${a.year}`);
-    const dateB = new Date(`${b.month} 1, ${b.year}`);
-    return dateB - dateA;
-  });
-
-  combinedData.forEach((monthData) => {
-    monthData.proposals.sort((a, b) => {
-      const dateA = parseDate(a["Start Date"]);
-      const dateB = parseDate(b["Start Date"]);
-
-      if (!dateA && !dateB) return 0;
-      if (!dateA) return 1;
-      if (!dateB) return -1;
-
-      return dateB - dateA;
-    });
-
-    monthData.proposals = monthData.proposals.filter((proposal) =>
-      Object.values(proposal).some((value) => value !== "")
-    );
-  });
-
-  return combinedData;
+  // Handle other potential types if needed
+  return "";
 }
 
 const PROTOCOL_PAGE_MAPPING = {
@@ -167,6 +47,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     let selectedProtocol = searchParams.get("protocol")?.toLowerCase(); // Convert to lowercase
+    console.log(selectedProtocol);
 
     // Validate the protocol
     if (selectedProtocol && !PROTOCOL_PAGE_MAPPING[selectedProtocol]) {
@@ -198,6 +79,8 @@ export async function GET(request) {
       ];
     }
 
+    console.log("IdsToUse", pageIdsToUse);
+
     const headers = {
       "Content-Type": "application/json",
       "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
@@ -207,6 +90,7 @@ export async function GET(request) {
 
     // Filter out any undefined page IDs
     const validPageIds = pageIdsToUse.filter((id) => id);
+    console.log("validIDs", validPageIds);
 
     if (validPageIds.length === 0) {
       return new Response(
@@ -226,27 +110,65 @@ export async function GET(request) {
       };
     });
 
-    // Fetch blocks for all pages in parallel
-    const blocksPromises = formattedPageIds.map(({ id }) =>
-      getAllBlocksRecursively(id)
-    );
-    const allBlocks = await Promise.all(blocksPromises);
+    console.log("formattedIds", formattedPageIds);
 
-    // Process data from all pages in parallel with their respective voting types
-    const allMonthlyData = await Promise.all(
-      allBlocks.map((blocks, index) =>
-        extractTableData(blocks, formattedPageIds[index].votingType)
-      )
+    // Fetch database records for all pages
+    const databasePromises = formattedPageIds.map(
+      async ({ id, votingType }) => {
+        const { results } = await notion.databases.query({
+          database_id: id,
+        });
+
+        console.log(`Debug - Database ${id} (${votingType}):`, {
+          resultsCount: results.length,
+          firstResult: results[0] // Log the first result if exists
+        });
+
+        // Transform each result to extract plain text and add voting type
+        return results.map((result) => {
+          const simplifiedRecord = {};
+
+          // Iterate through all properties
+          Object.entries(result.properties).forEach(([key, value]) => {
+            simplifiedRecord[key] = extractPlainText(value);
+          });
+
+          // Add voting type to each record
+          simplifiedRecord["Type"] = votingType;
+
+          return simplifiedRecord;
+        });
+      }
     );
 
-    // Combine and sort all data
-    const combinedSortedData = combineAndSortMonthlyData(allMonthlyData.flat());
+    // Fetch all database records
+    const allDatabaseRecords = (await Promise.all(databasePromises)).flat();
+
+    // Sort database records
+    const sortedRecords = allDatabaseRecords.sort((a, b) => {
+      const parseDate = (dateStr) => {
+        if (!dateStr) return null;
+        const [day, month, year] = dateStr.split("/");
+        return new Date(`${year}-${month}-${day}`);
+      };
+
+      const dateA = parseDate(a["Start Date"]);
+      const dateB = parseDate(b["Start Date"]);
+
+      if (!dateA && !dateB) return 0;
+      if (!dateA) return 1;
+      if (!dateB) return -1;
+
+      return dateB - dateA;
+    });
+
+    // console.log(sortedRecords);
 
     return new Response(
       JSON.stringify({
         success: true,
-        data: combinedSortedData,
-        timestamp, // Include timestamp in response
+        data: sortedRecords,
+        timestamp,
       }),
       { headers }
     );
