@@ -484,7 +484,7 @@ const VoteSection = () => {
       <div className={styles.delegateNow}>
         <h1 className={styles.delegateNowHeading}>Delegate to Lampros DAO</h1>
         <div className={styles.delegateNowPara}>
-          <div>Your delegation matters !! </div>
+          <div>Your delegation matters!! </div>
           <br />
           <div>
             By delegating your tokens to our team, you enable us to represent
