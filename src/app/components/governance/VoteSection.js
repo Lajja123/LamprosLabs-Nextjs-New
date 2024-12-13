@@ -189,35 +189,70 @@ const VoteSection = () => {
   // Content processing function
   const processForumContent = (content) => {
     const baseUrl = "https://forum.arbitrum.foundation";
-  
+
     // Replace relative URLs with absolute URLs
     const updatedContent = content.replace(
       /href="\/(?!\/)/g, // Match hrefs that start with a single "/"
       `href="${baseUrl}/`
     );
-  
+
     // Ensure all anchor tags open in a new tab with security attributes
     const updatedLinks = updatedContent.replace(
       /<a\b([^>]*?)>/g, // Match all anchor tags
       '<a target="_blank" rel="noopener noreferrer" $1>'
     );
-  
+
     // Remove HTML tags for images
     const contentWithoutImages = updatedLinks.replace(/<img[^>]*>/g, "");
-  
+
     // Process blockquotes with username
     const processedContent = contentWithoutImages.replace(
       /<aside[^>]*data-username="([^"]*)"[^>]*>.*?<blockquote>/gs,
       (match, username) => `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
     );
-  
+
     // Clean up closing tags
-    const finalContent = processedContent.replace(
+    const contentProcessed = processedContent.replace(
       /<\/blockquote><\/aside>/g,
-      '</blockquote></div>'
+      "</blockquote></div>"
+    );
+
+    // Extract mentioned usernames from the 'cooked' property
+    const mentionedUsernames = extractMentionedUsernames(contentProcessed);
+
+    // Apply custom CSS classes to the mentioned usernames
+    const finalContent = updatedContent.replace(
+      /@(\w+)/g,
+      (match, username) => {
+        if (mentionedUsernames.includes(username)) {
+          return `<a class="${styles.mentionedUsernamesStyle}" href="https://forum.arbitrum.foundation/u/${username}" target="_blank" rel="noopener noreferrer">@${username}</a>`;
+        } else {
+          return match;
+        }
+      }
+    );
+
+    const processedContentFinal = finalContent.replace(
+      /href="(https:\/\/forum.arbitrum.foundation\/[^"]+)"/g,
+      (match, url) => {
+        if (url.includes('/u/')) {
+          // Links to user profiles
+          return `href="${url}" class="${styles.mentionedUsernamesStyle}" target="_blank" rel="noopener noreferrer"`;
+        } else {
+          // Other links
+          return `href="${url}" class="${styles.mentionedHyperlinkStyle}" target="_blank" rel="noopener noreferrer"`;
+        }
+      }
     );
   
-    return finalContent;
+    return processedContentFinal;
+  };
+
+  const extractMentionedUsernames = (content) => {
+    // Use a regular expression or other parsing method to extract the mentioned usernames from the 'cooked' property
+    const regex = /@(\w+)/g;
+    const matches = content.match(regex);
+    return matches ? matches.map((match) => match.slice(1)) : [];
   };
 
   const SkeletonLoader = () => {

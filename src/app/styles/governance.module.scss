@@ -4,6 +4,7 @@
   box-sizing: border-box;
   position: relative;
   animation: fadeIn 1.5s ease-in-out;
+  z-index: 1;
 }
 
 .bgimage {
@@ -15,6 +16,7 @@
   max-width: 580px;
   height: max-content;
   animation: bounce 4s infinite ease-in-out;
+  pointer-events: none;
 }
 
 .img {

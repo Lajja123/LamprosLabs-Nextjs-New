@@ -91,6 +91,34 @@
   box-shadow: 0px 8px 20px rgba(0, 255, 208, 0.6);
 }
 
+.mentionedUsernamesStyle {
+  color: orange; 
+  font-weight: bold;
+  text-decoration: none; 
+  background-color: rgba(26, 115, 232, 0.1); 
+  padding: 2px 4px; 
+  border-radius: 4px; 
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+.mentionedUsernamesStyle:hover {
+  color: cyan; 
+}
+
+.mentionedHyperlinkStyle {
+  color: yellow; 
+  font-weight: bold;
+  text-decoration: none; 
+  background-color: rgba(26, 115, 232, 0.1); 
+  padding: 2px 4px; 
+  border-radius: 4px; 
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+.mentionedHyperlinkStyle:hover {
+  color: greenyellow; 
+}
+
 .quotedText {
   background-color: #f0f0f0;
   border-left: 7px solid #4169e1; /* Royal Blue */
@@ -325,8 +353,8 @@
 }
 
 .arbitrum-tag {
-  color: #9DCCED;
-  border: 1.3px solid #9DCCED;
+  color: cyan;
+  border: 1.3px solid cyan;
 }
 
 .optimism-tag {
@@ -349,7 +377,7 @@
   color: yellow;
   border: 1.3px solid yellow;
   border-radius: 15px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .onchain {
@@ -357,7 +385,7 @@
   color: rgb(245, 175, 45);
   border: 1.3px solid rgb(251, 173, 28);
   border-radius: 15px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .chainDiv {

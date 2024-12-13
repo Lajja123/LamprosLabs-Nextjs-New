@@ -65,7 +65,7 @@ function Navbar() {
               <div className="right"></div>
             </div>
             <li
-              className={`nav-item three-d  ${pathname == "/" ? "active" : ""}`}
+              className={`nav-item   ${pathname == "/" ? "active" : ""}`}
             >
               <Link
                 className="nav-link "
@@ -76,7 +76,7 @@ function Navbar() {
               </Link>
             </li>
             <li
-              className={`nav-item three-d  ${
+              className={`nav-item   ${
                 pathname == "/about-us" ? "active" : ""
               }`}
             >
@@ -89,7 +89,7 @@ function Navbar() {
               </Link>
             </li>
             <li
-              className={`nav-item three-d ${
+              className={`nav-item  ${
                 pathname == "/governance" ? "active" : ""
               }`}
             >
@@ -101,7 +101,7 @@ function Navbar() {
                 GOVERNANCE
               </Link>
             </li>
-            <li className={`nav-item three-d `}>
+            <li className={`nav-item  `}>
               <Link
                 className="nav-link "
                 href="https://lamprosdao.notion.site/a2d67afc0ed84377918b536341374f0e?v=6e84b9a6c7b648bd86dc9b20a4804124"
@@ -112,7 +112,7 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item dropdown three-d">
+            <li className="nav-item dropdown ">
               <div
                 className="nav-link dropdown-toggle"
                 id="navbarDropdown"
@@ -123,9 +123,10 @@ function Navbar() {
               >
                 PROGRAM
               </div>
+              
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li
-                  className={`dropdown-list three-d  ${
+                  className={`dropdown-list   ${
                     pathname == "/programs/hackathon" ? "active" : ""
                   }`}
                 >
@@ -141,7 +142,7 @@ function Navbar() {
             </li>
          
             {/* <li
-              className={`nav-item three-d ${
+              className={`nav-item  ${
                 pathname == "/dao-roadmap" ? "active" : ""
               }`}
             >

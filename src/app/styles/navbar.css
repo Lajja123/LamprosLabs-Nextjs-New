@@ -31,17 +31,39 @@
 #navbarNavDropdown .dropdown-menu {
   position: absolute; /* Set position to absolute */
   top: 102%; /* Position it below the parent */
-  left: 0;
+  right: -12%;
   z-index: 1000; /* Ensure it appears on top of other elements */
   border: none;
 }
-.nav-item:hover .dropdown-menu {
-  display: block;
-}
+/* Completely hide the dropdown menu by default */
 .dropdown-menu {
-  display: none;
-  position: absolute;
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
+
+/* Show dropdown only when directly hovering over the specific dropdown container */
+.nav-item.dropdown:hover > .dropdown-menu {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Ensure no interaction when the div is not present or commented out */
+.nav-item.dropdown:not(:has(.dropdown-toggle)) .dropdown-menu {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  position: absolute !important;
+}
+
 #navbarNavDropdown ul li a i {
   margin-right: 10px;
 }

@@ -17,7 +17,7 @@ export async function GET() {
     const currentTime = new Date();
 
     // Calculate the time 85 hours ago in UTC
-    const manyHoursAgo = new Date(currentTime.getTime() - 128 * 60 * 60 * 1000);
+    const manyHoursAgo = new Date(currentTime.getTime() - 1 * 60 * 60 * 1000);
 
     // Filter topics within the last 30 minutes based on last_posted_at
     const filteredTopics = topics.filter((topic) => {
