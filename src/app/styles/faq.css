@@ -1,0 +1,178 @@
+.faqs-main {
+    width: 90%;
+    max-width: 1440px;
+    margin: 0px auto;
+    position: relative;
+    z-index: 100;
+    margin-top: 50px;
+    /* margin-bottom: 300px; */
+    /* margin-bottom: 200px; */
+  }
+  .faqs-main h2 {
+    color: #1DF9D8;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 63px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .faqs-main p {
+    color: #fff;
+    text-align: right;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 161.5%; /* 25.84px */
+    letter-spacing: 1.28px;
+    margin-right: 19px;
+    /* width: fit-content; */
+  }
+  .faqs-main p span {
+    cursor: pointer;
+  }
+  .faqs-main p span:hover {
+    color: #1DF9D8;
+  }
+  
+  /* .ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } */
+  
+  .faqs-grid-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 2fr));
+  }
+  .faqs-box {
+    /* width: 100%; */
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 16px;
+    margin: 19px;
+    padding: 25px;
+    transition: all 1s ease;
+    cursor: pointer;
+  
+    height: fit-content;
+  }
+  .faqs-box.active {
+    max-height: 500px;
+  }
+  .faq-more > span {
+    width: 52px;
+    height: 52px;
+    border: 2px solid white;
+    border-radius: 99999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .faq-more span svg {
+    fill: #1DF9D8;
+    transition: all 0.5s ease;
+    transform: rotate(90deg);
+    /* width: 14px; */
+  }
+  .faq-details {
+    padding-right: 40px;
+    width: 90%;
+  }
+  .faq {
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #fff;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 131%; /* 23.58px */
+    letter-spacing: 1.44px;
+    display: block;
+    width: 90%;
+    word-wrap: break-word;
+  }
+  .faq-answer {
+    color: #fffbfb;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 132.5%; /* 18.55px */
+    letter-spacing: 1.12px;
+  }
+  
+  .faqs-box:hover,
+  .faqs-box.active {
+    background-color: white;
+  }
+  
+  .faqs-box:hover .faq,
+  .faqs-box:hover .faq-answer,
+  .faqs-box.active .faq,
+  .faqs-box.active .faq-answer {
+    color: black;
+  }
+  
+  .faqs-box:hover .faq-more span svg {
+    fill: black;
+  }
+  
+  .faqs-box.active .faq-more span svg {
+    fill: white;
+  }
+  
+  .faqs-box:hover > .faq-more span {
+    border: 2px solid black;
+  }
+  .faqs-box.active > .faq-more span {
+    background-color: #2A01FE;
+  }
+  .faqs-box.active > .faq-more span svg {
+    transform: rotate(270deg);
+  }
+  
+  @media (max-width: 768px) {
+    .faqs-main {
+      margin-top: 0px;
+      margin-bottom: 100px;
+    }
+    .faqs-main h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .faqs-grid-boxes {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+    .faqs-box {
+      min-width: auto;
+      margin: 10px;
+      padding: 20px;
+    }
+    .faq-details {
+      padding-right: 20px;
+    }
+    .faq-more > span {
+      width: 40px;
+      height: 40px;
+    }
+    .faqs-box:hover {
+      background-color: black;
+    }
+    .faqs-box:hover .faq,
+    .faqs-box:hover .faq-answer {
+      color: white;
+    }
+    .faqs-box:hover .faq-more span svg {
+      fill: #1DF9D8;
+    }
+    .faqs-box:hover > .faq-more span {
+      border: 2px solid white;
+    }
+  }

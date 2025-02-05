@@ -87,7 +87,7 @@ export async function GET(request) {
       ];
     }
 
-    console.log("IdsToUse", pageIdsToUse);
+    // console.log("IdsToUse", pageIdsToUse);
 
     const headers = {
       "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export async function GET(request) {
 
     // Filter out any undefined page IDs
     const validPageIds = pageIdsToUse.filter((id) => id);
-    console.log("validIDs", validPageIds);
+    // console.log("validIDs", validPageIds);
 
     if (validPageIds.length === 0) {
       return new Response(
@@ -124,7 +124,7 @@ export async function GET(request) {
       };
     });
 
-    console.log("formattedIds", formattedPageIds);
+    // console.log("formattedIds", formattedPageIds);
 
     // Fetch database records for all pages
     const databasePromises = formattedPageIds.map(
@@ -133,10 +133,10 @@ export async function GET(request) {
           database_id: id,
         });
 
-        console.log(`Debug - Database ${id} (${votingType}):`, {
-          resultsCount: results.length,
-          firstResult: results[0] // Log the first result if exists
-        });
+        // console.log(`Debug - Database ${id} (${votingType}):`, {
+        //   resultsCount: results.length,
+        //   firstResult: results[0] // Log the first result if exists
+        // });
 
         // Transform each result to extract plain text and add voting type
         return results.map((result) => {

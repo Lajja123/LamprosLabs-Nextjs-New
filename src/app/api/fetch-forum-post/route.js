@@ -6,7 +6,7 @@ export async function GET(request) {
   const postId = searchParams.get('postId');
   const postNumber = searchParams.get('postNumber');
 
-  console.log(`Fetching forum post with postId: ${postId}, postNumber: ${postNumber}`);
+  // console.log(`Fetching forum post with postId: ${postId}, postNumber: ${postNumber}`);
 
   if (!postId || !postNumber) {
     return NextResponse.json(

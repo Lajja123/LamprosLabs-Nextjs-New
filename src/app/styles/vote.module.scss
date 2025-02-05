@@ -40,8 +40,11 @@
 }
 
 .delegationsHeading {
+  width: 100%;
   font-size: 1.8rem;
-  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: aqua;
   margin-bottom: 20px;
 }
@@ -51,7 +54,8 @@
   justify-content: space-between;
   gap: 25px;
   // flex-wrap: wrap;
-  width: 100%;
+  width: 75%;
+  margin: auto;
   border: 2px solid rgba(0, 255, 255, 0.215);
   padding: 40px 60px;
   border-radius: 15px;

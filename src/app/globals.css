@@ -206,6 +206,16 @@ input[name="flexRadioNoLabel"] {
   border: none;
 }
 
+.layout-navbar {
+  position: relative;
+  z-index: 50;
+}
+
+.layout-children {
+  position: relative;
+  z-index: 10;
+}
+
 @media only screen and (max-width: 1024px) {
   .Slxdj {
     font-size: 2em !important;

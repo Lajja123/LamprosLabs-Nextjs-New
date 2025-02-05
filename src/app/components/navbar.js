@@ -64,9 +64,7 @@ function Navbar() {
               <div className="left"></div>
               <div className="right"></div>
             </div>
-            <li
-              className={`nav-item   ${pathname == "/" ? "active" : ""}`}
-            >
+            <li className={`nav-item   ${pathname == "/" ? "active" : ""}`}>
               <Link
                 className="nav-link "
                 href="/"
@@ -112,7 +110,49 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item dropdown ">
+            {/* <li className="nav-item dropdown ">
+              <div
+                className="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                CONTRIBUTIONS
+              </div>
+
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li
+                  className={`dropdown-list   ${
+                    pathname == "/programs/hackathon" ? "active" : ""
+                  }`}
+                >
+                  <Link
+                    className="dropdown-item"
+                    href="/programs/hackathon"
+                    onClick={() => handleNavClick()}
+                  >
+                    Arbitrum
+                  </Link>
+                </li>
+                <li
+                  className={`dropdown-list   ${
+                    pathname == "/programs/hackathon" ? "active" : ""
+                  }`}
+                >
+                  <Link
+                    className="dropdown-item"
+                    href="/programs/hackathon"
+                    onClick={() => handleNavClick()}
+                  >
+                    Optimism
+                  </Link>
+                </li>
+              </ul>
+            </li> */}
+
+            {/* <li className="nav-item dropdown ">
               <div
                 className="nav-link dropdown-toggle"
                 id="navbarDropdown"
@@ -139,8 +179,8 @@ function Navbar() {
                   </Link>
                 </li>
               </ul>
-            </li>
-         
+            </li> */}
+
             {/* <li
               className={`nav-item  ${
                 pathname == "/dao-roadmap" ? "active" : ""

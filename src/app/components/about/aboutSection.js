@@ -55,36 +55,16 @@ export default function aboutPage() {
               <Fade duration={1500} delay={100}>
                 <div className={aboutStyle.aboutSec1Box}>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                    In the vibrant world of blockchain, Lampros DAO stands as a
-                    beacon, illuminating the path for innovators, dreamers, and
-                    builders. Founded with a profound vision to seamlessly merge
-                    blockchain technology with mainstream applications, we've
-                    steadily grown into a robust community hub.
+                  Lampros DAO was founded by a group of individuals with a shared vision for governance and decentralization. Our north star is to support and grow Ethereum, and we contribute to this goal by actively participating in Layer 2 solutions like Arbitrum and Optimism.
                   </p>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                    Our ethos is rooted in fostering growth - both of the
-                    individual and the collective. With each project we support,
-                    every developer we guide, and each event we host, we inch
-                    closer to a future where blockchain isn't just a buzzword,
-                    but an integral part of our digital tapestry.
+                  We believe blockchain is not just about technology—it’s about the people, communities, and ideas that drive it forward. Our ethos is rooted in fostering growth, both for individuals and the ecosystem, ensuring that governance, research, and education remain accessible to all. Through proposal discussions, governance research, and ecosystem-building, we help shape the future of decentralized networks.
                   </p>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                    At Lampros DAO, it's not just about code and technology.
-                    It's about the humans behind it. We prioritize well-being,
-                    ensuring that our members thrive in an environment that
-                    values creativity, innovation, and collaboration.
+                  At Lampros DAO, we are supporting a movement—a movement where public goods, developer support, and open collaboration take centre stage. We envision a future where blockchain technology seamlessly integrates into everyday life, making Web3 more inclusive, sustainable, and impactful.
                   </p>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                    Through the Lampros DAO Collective, we're championing a
-                    unique movement. A movement where public goods take center
-                    stage, where developers receive unparalleled support, and
-                    where blockchain technology finds its rightful place in
-                    mainstream use.
-                  </p>
-                  <p className={aboutStyle.aboutUsSection1CardDesc}>
-                    Join us in this monumental journey as we reshape the
-                    contours of the digital realm, making Web3 more accessible,
-                    inclusive, and influential.
+                  We are building on this foundation—join us as we shape the future of decentralized governance and Ethereum’s Layer 2 ecosystems.
                   </p>
                 </div>
               </Fade>
@@ -164,14 +144,10 @@ export default function aboutPage() {
 
               <div className={aboutStyle.sec3Aboutblockflex}>
                 <p className={aboutStyle.sec3Aboutheading}>
-                  The Blockchain Mainstream Movement
+                Strengthening Decentralized Governance
                 </p>
                 <p className={aboutStyle.sec3Aboutpera}>
-                  Lampros DAO stands at the frontier of innovation. Our
-                  mission? To propel all projects harnessing blockchain
-                  technology to mainstream consciousness. When we talk about
-                  blockchain, we're talking about the future, and we're here to
-                  lead the charge.
+                We are committed to strengthening decentralized governance by actively participating in Layer 2 ecosystems like Arbitrum and Optimism. Our goal is to make blockchain governance more transparent, inclusive and research-driven.
                 </p>
               </div>
             </div>
@@ -200,9 +176,7 @@ export default function aboutPage() {
                       Opportunities Await
                     </div>
                     <p className={aboutStyle.sec3Aboutpera}>
-                      We're constantly on the lookout. Each day, established
-                      blockchains present new chances to contribute, and we
-                      ensure we're first in line to seize them.
+                    We constantly explore new opportunities in decentralized governance, contributing research, policy frameworks, and insights that drive informed decision-making across DAOs.
                     </p>
                   </div>
                 </div>
@@ -220,10 +194,7 @@ export default function aboutPage() {
                       Public Goods for a Shared Future
                     </div>
                     <p className={aboutStyle.sec3Aboutpera}>
-                      In our pursuit of advancing the blockchain community,
-                      we're dedicated to offering public goods. Together, we'll
-                      build bridges and fill gaps, ensuring a flourishing
-                      ecosystem.
+                    We are committed to advancing Ethereum’s vision by supporting public goods, open-source development, and governance initiatives across Layer 2 solutions.
                     </p>
                   </div>
                 </div>
@@ -241,10 +212,7 @@ export default function aboutPage() {
                       Sustainability Meets Innovation
                     </div>
                     <p className={aboutStyle.sec3Aboutpera}>
-                      Novel ideas need nurturing. Lampros DAO recognizes this
-                      and is committed to pooling the necessary resources,
-                      ensuring groundbreaking projects aren't just dreams, but
-                      tangible realities.
+                    For blockchain networks to be sustainable, governance must evolve. We conduct research and develop frameworks that ensure decentralized communities remain resilient and future-proof.
                     </p>
                   </div>
                 </div>
@@ -264,11 +232,7 @@ export default function aboutPage() {
                   Your Web3 Journey, Amplified
                 </div>
                 <p className={aboutStyle.sec3Aboutpera}>
-                  Web3 can be uncharted territory for many. That's why we're
-                  committed to supporting developers on this transformative
-                  journey. With comprehensive training, enticing monetary
-                  incentives, and an uplifting community, we ensure your passion
-                  remains ignited.
+                Web3 can be uncharted territory for many. That’s why we empower developers, governance contributors, and researchers with the knowledge and resources they need to shape the future of decentralized networks.
                 </p>
               </div>
             </div>
@@ -304,14 +268,10 @@ export default function aboutPage() {
 
                   <div className="px-4">
                     <div className={aboutStyle.sec3Aboutheading}>
-                      The Blockchain Mainstream Movement
+                    Strengthening Decentralized Governance
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                      Lampros DAO stands at the frontier of innovation. Our
-                      mission? To propel all projects harnessing blockchain
-                      technology to mainstream consciousness. When we talk about
-                      blockchain, we're talking about the future, and we're here
-                      to lead the charge.
+                    We are committed to strengthening decentralized governance by actively participating in Layer 2 ecosystems like Arbitrum and Optimism. Our goal is to make blockchain governance more transparent, inclusive and research-driven.
                     </div>
                   </div>
                 </div>
@@ -332,9 +292,7 @@ export default function aboutPage() {
                       Opportunities Await
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                      We're constantly on the lookout. Each day, established
-                      blockchains present new chances to contribute, and we
-                      ensure we're first in line to seize them.
+                    We constantly explore new opportunities in decentralized governance, contributing research, policy frameworks, and insights that drive informed decision-making across DAOs.
                     </div>
                   </div>
                 </div>
@@ -355,10 +313,7 @@ export default function aboutPage() {
                       Public Goods for a Shared Future
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                      In our pursuit of advancing the blockchain community,
-                      we're dedicated to offering public goods. Together, we'll
-                      build bridges and fill gaps, ensuring a flourishing
-                      ecosystem.
+                    We are committed to advancing Ethereum’s vision by supporting public goods, open-source development, and governance initiatives across Layer 2 solutions.
                     </div>
                   </div>
                 </div>
@@ -379,10 +334,7 @@ export default function aboutPage() {
                       Sustainability Meets Innovation
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                      Novel ideas need nurturing. Lampros DAO recognizes this
-                      and is committed to pooling the necessary resources,
-                      ensuring groundbreaking projects aren't just dreams, but
-                      tangible realities.
+                    For blockchain networks to be sustainable, governance must evolve. We conduct research and develop frameworks that ensure decentralized communities remain resilient and future-proof.
                     </div>
                   </div>
                 </div>
@@ -402,11 +354,7 @@ export default function aboutPage() {
                       Your Web3 Journey, Amplified
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                      Web3 can be uncharted territory for many. That's why we're
-                      committed to supporting developers on this transformative
-                      journey. With comprehensive training, enticing monetary
-                      incentives, and an uplifting community, we ensure your
-                      passion remains ignited.
+                    Web3 can be uncharted territory for many. That’s why we empower developers, governance contributors, and researchers with the knowledge and resources they need to shape the future of decentralized networks.
                     </div>
                   </div>
                 </div>
@@ -414,7 +362,7 @@ export default function aboutPage() {
             </div>
           </section>
 
-          <section
+          {/* <section
             className={`${aboutStyle["section4aboutUs"]} pb-sm-5`}
             ref={section3Ref}
             smooth={true}
@@ -435,31 +383,6 @@ export default function aboutPage() {
                 ></Image>
               </div>
 
-              {/* <div className={aboutStyle.container}>
-                <Image src={union} alt=""></Image>
-                <div className={aboutStyle.iconMain}>
-                  <Image
-                    className={`${aboutStyle["movingIcon"]} ${aboutStyle["icon1"]}`}
-                    src={hack}
-                    alt="Icon 1"
-                  />
-                  <Image
-                    className={`${aboutStyle["movingIcon"]} ${aboutStyle["icon2"]}`}
-                    src={idea1}
-                    alt="Icon 2"
-                  />
-                  <Image
-                    className={`${aboutStyle["movingIcon"]} ${aboutStyle["icon3"]}`}
-                    src={web}
-                    alt="Icon 3"
-                  />
-                  <Image
-                    className={`${aboutStyle["movingIcon"]} ${aboutStyle["icon4"]}`}
-                    src={meet}
-                    alt="Icon 4"
-                  />
-                </div>
-              </div> */}
               <div
                 className={`${aboutStyle["journeyimagediv"]} col-2 d-lg-none`}
               >
@@ -517,7 +440,7 @@ export default function aboutPage() {
                 </Fade>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </div>

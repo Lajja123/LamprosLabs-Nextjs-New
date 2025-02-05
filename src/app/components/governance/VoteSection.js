@@ -23,20 +23,20 @@ const VoteSection = () => {
       name: "Optimism", // Changed to proper display name
       value: "optimism",
       icon: "/governance/optimism.svg",
-      link: "",
+      link: "https://vote.optimism.io/delegates/lamprosdao.eth",
     },
-    {
-      name: "Uniswap", // Changed to proper display name
-      value: "uniswap",
-      icon: "/governance/uniswap.svg",
-      link: "",
-    },
-    {
-      name: "ENS", // Changed to proper display name
-      value: "ens",
-      icon: "/governance/ens.svg",
-      link: "",
-    },
+    // {
+    //   name: "Uniswap", // Changed to proper display name
+    //   value: "uniswap",
+    //   icon: "/governance/uniswap.svg",
+    //   link: "",
+    // },
+    // {
+    //   name: "ENS", // Changed to proper display name
+    //   value: "ens",
+    //   icon: "/governance/ens.svg",
+    //   link: "",
+    // },
   ];
 
   // Function to parse forum URL and extract post ID and post number
@@ -110,7 +110,7 @@ const VoteSection = () => {
       if (data.success && data.data) {
         const validProposals = data.data.filter(
           (proposal) =>
-            proposal["Communication Rationale"] && proposal["Commented By"]
+            proposal["Commented By"]
         );
 
         const transformedProposals = await Promise.allSettled(
@@ -121,11 +121,17 @@ const VoteSection = () => {
               proposal["Communication Rationale"] || ""
             );
 
-            // Rest of your transformation code...
             let date = new Date();
             if (proposal["Start Date"]) {
               const [day, month, year] = proposal["Start Date"].split("/");
               date = new Date(year, month - 1, day);
+            }
+
+            let endDate = new Date();
+            if (proposal["End Date"]) {
+              console.log("end date", proposal["End Date"]);
+              const [day, month, year] = proposal["End Date"].split("/");
+              endDate = new Date(year, month - 1, day);
             }
 
             let forumContent = null;
@@ -153,6 +159,8 @@ const VoteSection = () => {
               commentLink: proposal["Communication Rationale"] || "",
               forumContent: forumContent,
               forumCreatedAt: forumCreatedAt,
+              endDate: endDate,
+              hasRationale: !!proposal["Communication Rationale"],
               voter: {
                 icon: "/governance/voter.svg",
                 name: proposal["Commented By"] || "Anonymous",
@@ -253,6 +261,15 @@ const extractMentionedUsernames = (content) => {
   const regex = /@(\w+)/g;
   const matches = content.match(regex);
   return matches ? matches.map((match) => match.slice(1)) : [];
+};
+
+const formatDate = (date) => {
+  console.log("date", date);
+  return date ? new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }) : "";
 };
 
   const SkeletonLoader = () => {
@@ -433,35 +450,31 @@ const extractMentionedUsernames = (content) => {
                             {proposal.result}
                           </span>{" "}
                           on{" "}
-                          {proposal.forumCreatedAt && (
-                            <span className={styles.dateVote}>
-                              {new Date(
-                                proposal.forumCreatedAt
-                              ).toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                              })}
-                            </span>
-                          )}
+                          <span className={styles.dateVote}>
+                            {proposal.hasRationale && proposal.forumCreatedAt
+                              ? formatDate(proposal.forumCreatedAt)
+                              : formatDate(proposal.endDate)}
+                          </span>
                         </div>
                       </div>
                     </div>
 
-                    <div className={styles.comment}>
-                      <div className={styles.rationaleDiv}>
-                        <span className={styles.rationale}>Rationale</span>
+                    {proposal.hasRationale && (
+                      <div className={styles.comment}>
+                        <div className={styles.rationaleDiv}>
+                          <span className={styles.rationale}>Rationale</span>
+                        </div>
+                        {proposal.forumContent ? (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: proposal.forumContent,
+                            }}
+                          />
+                        ) : (
+                          <p>{proposal.commentLink}</p>
+                        )}
                       </div>
-                      {proposal.forumContent ? (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: proposal.forumContent,
-                          }}
-                        />
-                      ) : (
-                        <p>{proposal.commentLink}</p>
-                      )}
-                    </div>
+                    )}
                   </div>
                 )}
               </div>

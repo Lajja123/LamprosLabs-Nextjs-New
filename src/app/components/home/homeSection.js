@@ -11,7 +11,7 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FAQ from "../faq/faq";
-import { question } from "../faqApi/faqApi";
+import FAQs from "../faqApi/faqApi";
 import Slider from "react-slick";
 
 function homeSection() {
@@ -217,7 +217,7 @@ function homeSection() {
           <h1 className={homeStyle.sectio4Title}>FAQS</h1>
         </Fade>
         <div className={homeStyle.faqAccordionMain}>
-          <Fade bottom duration={2000} distance="30px">
+          {/* <Fade bottom duration={2000} distance="30px">
             {question.map((faq) => (
               <FAQ
                 key={faq.question}
@@ -225,7 +225,8 @@ function homeSection() {
                 answer={faq.answer}
               />
             ))}
-          </Fade>
+          </Fade> */}
+          <FAQs />
         </div>
       </section>
     </div>

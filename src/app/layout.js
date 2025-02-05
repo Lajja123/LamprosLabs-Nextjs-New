@@ -19,8 +19,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={josefin.className}>
-        <Navbar />
-        {children}
+        <div className="layout-navbar">
+          <Navbar />
+        </div>
+        <div className="layout-children">{children}</div>
         <BootstrapClient />
         <Footer />
       </body>
