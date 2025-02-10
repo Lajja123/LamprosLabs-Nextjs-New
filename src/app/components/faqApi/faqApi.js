@@ -141,9 +141,9 @@ function FAQs() {
             >
               <div className="faq-details">
                 <span className="faq">{item.question}</span>
-                <span className="faq-answer">
+                <div className="faq-answer">
                   {activeBox === index && <>{item.answer}</>}
-                </span>
+                </div>
               </div>
               <div className="faq-more">
                 <span>

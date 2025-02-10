@@ -26,21 +26,63 @@ export default function aboutPage() {
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
 
+  const items = [
+    {
+      title: "Hackathon Highlights",
+      description:
+        "Lampros DAO stands tall in global hackathons, leaving imprints across diverse blockchains.",
+    },
+    {
+      title: "Journey From Web2 To Web3",
+      description:
+        "We've guided 30+ developers through the transformation, turning passion into web3 expertise.",
+    },
+    {
+      title: "Opportunities At Lampros",
+      description:
+        "For the new and the curious, Lampros is a beacon. Learn and earn in the world of web3.",
+    },
+    {
+      title: "Global Workshops",
+      description:
+        "Broaden your horizons. Our sessions offer both global exposure and skill refinement.",
+    },
+    {
+      title: "Hackathon Highlights part2",
+      description:
+        "Lampros DAO stands tall in global hackathons, leaving imprints across diverse blockchains.",
+    },
+    {
+      title: "Journey From Web2 To Web3 part2",
+      description:
+        "We've guided 30+ developers through the transformation, turning passion into web3 expertise.",
+    },
+    {
+      title: "Opportunities At Lampros part2",
+      description:
+        "For the new and the curious, Lampros is a beacon. Learn and earn in the world of web3.",
+    },
+    {
+      title: "Global Workshops part2",
+      description:
+        "Broaden your horizons. Our sessions offer both global exposure and skill refinement.",
+    },
+  ];
+
   return (
     <div>
-      <div className={aboutStyle.aboutUsMainBg}>
         <ScrollBtn
           section1Ref={section1Ref}
           section2Ref={section2Ref}
           section3Ref={section3Ref}
         />
+      <div className={aboutStyle.aboutUsMainBg}>
         <div
           className={aboutStyle.aboutUsMain}
-          ref={section1Ref}
           smooth={true}
           duration={600}
         >
-          <section className={`${aboutStyle.section1AboutUs} py-sm-5 py-3`}>
+          <section  className={`${aboutStyle.section1AboutUs} py-sm-5 py-3`}>
             <div className={aboutStyle.aboutImgMainDiv}>
               <Image src={aboutImg} alt="" className={aboutStyle.aboutImg} />
             </div>
@@ -55,23 +97,41 @@ export default function aboutPage() {
               <Fade duration={1500} delay={100}>
                 <div className={aboutStyle.aboutSec1Box}>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                  Lampros DAO was founded by a group of individuals with a shared vision for governance and decentralization. Our north star is to support and grow Ethereum, and we contribute to this goal by actively participating in Layer 2 solutions like Arbitrum and Optimism.
+                    Lampros DAO was founded by a group of individuals with a
+                    shared vision for governance and decentralization. Our north
+                    star is to support and grow Ethereum, and we contribute to
+                    this goal by actively participating in Layer 2 solutions
+                    like Arbitrum and Optimism.
                   </p>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                  We believe blockchain is not just about technology—it’s about the people, communities, and ideas that drive it forward. Our ethos is rooted in fostering growth, both for individuals and the ecosystem, ensuring that governance, research, and education remain accessible to all. Through proposal discussions, governance research, and ecosystem-building, we help shape the future of decentralized networks.
+                    We believe blockchain is not just about technology—it’s
+                    about the people, communities, and ideas that drive it
+                    forward. Our ethos is rooted in fostering growth, both for
+                    individuals and the ecosystem, ensuring that governance,
+                    research, and education remain accessible to all. Through
+                    proposal discussions, governance research, and
+                    ecosystem-building, we help shape the future of
+                    decentralized networks.
                   </p>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                  At Lampros DAO, we are supporting a movement—a movement where public goods, developer support, and open collaboration take centre stage. We envision a future where blockchain technology seamlessly integrates into everyday life, making Web3 more inclusive, sustainable, and impactful.
+                    At Lampros DAO, we are supporting a movement—a movement
+                    where public goods, developer support, and open
+                    collaboration take centre stage. We envision a future where
+                    blockchain technology seamlessly integrates into everyday
+                    life, making Web3 more inclusive, sustainable, and
+                    impactful.
                   </p>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
-                  We are building on this foundation—join us as we shape the future of decentralized governance and Ethereum’s Layer 2 ecosystems.
+                    We are building on this foundation—join us as we shape the
+                    future of decentralized governance and Ethereum’s Layer 2
+                    ecosystems.
                   </p>
                 </div>
               </Fade>
             </div>
           </section>
 
-          <section className={aboutStyle.section2AboutUs}>
+          <section ref={section1Ref} className={aboutStyle.section2AboutUs}>
             <div
               className={`${aboutStyle["aboutsecflexmain"]} justify-content-around py-lg-2 pb-lg-5`}
             >
@@ -144,10 +204,13 @@ export default function aboutPage() {
 
               <div className={aboutStyle.sec3Aboutblockflex}>
                 <p className={aboutStyle.sec3Aboutheading}>
-                Strengthening Decentralized Governance
+                  Strengthening Decentralized Governance
                 </p>
                 <p className={aboutStyle.sec3Aboutpera}>
-                We are committed to strengthening decentralized governance by actively participating in Layer 2 ecosystems like Arbitrum and Optimism. Our goal is to make blockchain governance more transparent, inclusive and research-driven.
+                  We are committed to strengthening decentralized governance by
+                  actively participating in Layer 2 ecosystems like Arbitrum and
+                  Optimism. Our goal is to make blockchain governance more
+                  transparent, inclusive and research-driven.
                 </p>
               </div>
             </div>
@@ -159,6 +222,7 @@ export default function aboutPage() {
                   className={aboutStyle.aboutImg2}
                   alt=""
                 ></Image>
+
                 <div className={aboutStyle.sec3Imgheading}>Our Ethos</div>
               </div>
               <div className="py-3">
@@ -176,7 +240,9 @@ export default function aboutPage() {
                       Opportunities Await
                     </div>
                     <p className={aboutStyle.sec3Aboutpera}>
-                    We constantly explore new opportunities in decentralized governance, contributing research, policy frameworks, and insights that drive informed decision-making across DAOs.
+                      We constantly explore new opportunities in decentralized
+                      governance, contributing research, policy frameworks, and
+                      insights that drive informed decision-making across DAOs.
                     </p>
                   </div>
                 </div>
@@ -194,7 +260,9 @@ export default function aboutPage() {
                       Public Goods for a Shared Future
                     </div>
                     <p className={aboutStyle.sec3Aboutpera}>
-                    We are committed to advancing Ethereum’s vision by supporting public goods, open-source development, and governance initiatives across Layer 2 solutions.
+                      We are committed to advancing Ethereum’s vision by
+                      supporting public goods, open-source development, and
+                      governance initiatives across Layer 2 solutions.
                     </p>
                   </div>
                 </div>
@@ -212,7 +280,10 @@ export default function aboutPage() {
                       Sustainability Meets Innovation
                     </div>
                     <p className={aboutStyle.sec3Aboutpera}>
-                    For blockchain networks to be sustainable, governance must evolve. We conduct research and develop frameworks that ensure decentralized communities remain resilient and future-proof.
+                      For blockchain networks to be sustainable, governance must
+                      evolve. We conduct research and develop frameworks that
+                      ensure decentralized communities remain resilient and
+                      future-proof.
                     </p>
                   </div>
                 </div>
@@ -232,7 +303,10 @@ export default function aboutPage() {
                   Your Web3 Journey, Amplified
                 </div>
                 <p className={aboutStyle.sec3Aboutpera}>
-                Web3 can be uncharted territory for many. That’s why we empower developers, governance contributors, and researchers with the knowledge and resources they need to shape the future of decentralized networks.
+                  Web3 can be uncharted territory for many. That’s why we
+                  empower developers, governance contributors, and researchers
+                  with the knowledge and resources they need to shape the future
+                  of decentralized networks.
                 </p>
               </div>
             </div>
@@ -268,10 +342,14 @@ export default function aboutPage() {
 
                   <div className="px-4">
                     <div className={aboutStyle.sec3Aboutheading}>
-                    Strengthening Decentralized Governance
+                      Strengthening Decentralized Governance
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                    We are committed to strengthening decentralized governance by actively participating in Layer 2 ecosystems like Arbitrum and Optimism. Our goal is to make blockchain governance more transparent, inclusive and research-driven.
+                      We are committed to strengthening decentralized governance
+                      by actively participating in Layer 2 ecosystems like
+                      Arbitrum and Optimism. Our goal is to make blockchain
+                      governance more transparent, inclusive and
+                      research-driven.
                     </div>
                   </div>
                 </div>
@@ -292,7 +370,9 @@ export default function aboutPage() {
                       Opportunities Await
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                    We constantly explore new opportunities in decentralized governance, contributing research, policy frameworks, and insights that drive informed decision-making across DAOs.
+                      We constantly explore new opportunities in decentralized
+                      governance, contributing research, policy frameworks, and
+                      insights that drive informed decision-making across DAOs.
                     </div>
                   </div>
                 </div>
@@ -313,7 +393,9 @@ export default function aboutPage() {
                       Public Goods for a Shared Future
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                    We are committed to advancing Ethereum’s vision by supporting public goods, open-source development, and governance initiatives across Layer 2 solutions.
+                      We are committed to advancing Ethereum’s vision by
+                      supporting public goods, open-source development, and
+                      governance initiatives across Layer 2 solutions.
                     </div>
                   </div>
                 </div>
@@ -334,7 +416,10 @@ export default function aboutPage() {
                       Sustainability Meets Innovation
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                    For blockchain networks to be sustainable, governance must evolve. We conduct research and develop frameworks that ensure decentralized communities remain resilient and future-proof.
+                      For blockchain networks to be sustainable, governance must
+                      evolve. We conduct research and develop frameworks that
+                      ensure decentralized communities remain resilient and
+                      future-proof.
                     </div>
                   </div>
                 </div>
@@ -354,7 +439,10 @@ export default function aboutPage() {
                       Your Web3 Journey, Amplified
                     </div>
                     <div className={aboutStyle.sec3Aboutpera}>
-                    Web3 can be uncharted territory for many. That’s why we empower developers, governance contributors, and researchers with the knowledge and resources they need to shape the future of decentralized networks.
+                      Web3 can be uncharted territory for many. That’s why we
+                      empower developers, governance contributors, and
+                      researchers with the knowledge and resources they need to
+                      shape the future of decentralized networks.
                     </div>
                   </div>
                 </div>
@@ -394,7 +482,7 @@ export default function aboutPage() {
               </div>
 
               <div className={aboutStyle.aboutsec4mainboxflex}>
-                <Fade duration={1000} delay={500}>
+                <Fade duration={2000} delay={500}>
                   <div className={aboutStyle.aboutboxsec4}>
                     <div className={aboutStyle.aboutsec4boxheading}>
                       Hackathon Highlights
@@ -405,7 +493,7 @@ export default function aboutPage() {
                     </div>
                   </div>
                 </Fade>
-                <Fade duration={1000} delay={600}>
+                <Fade duration={2000} delay={600}>
                   <div className={aboutStyle.aboutboxsec4}>
                     <div className={aboutStyle.aboutsec4boxheading}>
                       Journey from Web2 to Web3
@@ -416,7 +504,7 @@ export default function aboutPage() {
                     </div>
                   </div>
                 </Fade>
-                <Fade duration={1000} delay={700}>
+                <Fade duration={2000} delay={800}>
                   <div className={aboutStyle.aboutboxsec4}>
                     <div className={aboutStyle.aboutsec4boxheading}>
                       Opportunities at Lampros
@@ -427,7 +515,7 @@ export default function aboutPage() {
                     </div>
                   </div>
                 </Fade>
-                <Fade duration={1000} delay={800}>
+                <Fade duration={2000} delay={900}>
                   <div className={aboutStyle.aboutboxsec4}>
                     <div className={aboutStyle.aboutsec4boxheading}>
                       Global Workshops
@@ -441,6 +529,37 @@ export default function aboutPage() {
               </div>
             </div>
           </section> */}
+
+          <section className={aboutStyle.timelineContainer}>
+            <Fade bottom duration={2000} distance="20px">
+              <h1 className={`${aboutStyle["sec4aboutheading"]} pb-4`}>
+                Our Web3 Journey
+              </h1>
+            </Fade>
+
+            <div className={aboutStyle.timelineLine}></div>
+
+            <div className={aboutStyle.timelineContent}>
+              {items.map((item, index) => (
+                <Fade
+                  key={index}
+                  duration={2000}
+                  delay={500 + index * 100}
+                  bottom={index % 2 === 0}
+                  top={index % 2 !== 0}
+                >
+                  <div className={aboutStyle.timelineItem}>
+                    <div className={aboutStyle.heading}>{item.title}</div>
+                    <div className={aboutStyle.description}>
+                      {item.description}
+                    </div>
+                    <div className={aboutStyle.connector}></div>
+                    <div className={aboutStyle.dot}></div>
+                  </div>
+                </Fade>
+              ))}
+            </div>
+          </section>
         </div>
       </div>
     </div>

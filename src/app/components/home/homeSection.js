@@ -143,15 +143,13 @@ function homeSection() {
           <div className={activeIndex === 0 ? "slick-active" : ""}>
             <div className={homeStyle.section3Card}>
               <h1 className={homeStyle.section3CardTitle}>
-                Hack, Build, Learn
+              Our Journey & Impact
               </h1>
 
               <p className={homeStyle.section3CardDesc}>
-                Sharpen your skills with us. From high-octane hackathons to
-                intensive bootcamps and enlightening cohorts, Lampros DAO is
-                your ticket to deepening your web3 proficiency.
+              From leading research projects to becoming an Active Delegate in DAOs, Lampros DAO has played a vital role in Web3 governance.
               </p>
-              <Link href="/programs/hackathon">
+              <Link href="/about-us">
                 <button
                   className={homeStyle.section3CardButton}
                   id={homeStyle.button7}
@@ -166,14 +164,12 @@ function homeSection() {
           </div>
           <div className={activeIndex === 1 ? "slick-active" : ""}>
             <div className={homeStyle.section3Card}>
-              <h1 className={homeStyle.section3CardTitle}>DAO</h1>
+              <h1 className={homeStyle.section3CardTitle}>Governance & Research</h1>
 
               <p className={homeStyle.section3CardDesc}>
-                The Lampros vision isn't just here and now. We're laying the
-                groundwork for a future Lampros DAO, where decentralization
-                meets purposeful action.
+              Driving decentralized governance through research, proposal discussions, and active participation in Arbitrum & Optimism DAOs.
               </p>
-              <Link href="/programs/hackathon">
+              <Link href="/governance">
                 <button
                   className={homeStyle.section3CardButton}
                   id={homeStyle.button7}
@@ -189,15 +185,13 @@ function homeSection() {
           <div className={activeIndex === 3 ? "slick-active" : ""}>
             <div className={homeStyle.section3Card}>
               <h1 className={homeStyle.section3CardTitle}>
-                Workshops, Activities & More
+              Workshops & Education
               </h1>
 
               <p className={homeStyle.section3CardDesc}>
-                Web3 is vast, and its potential is limitless. Through our
-                curated sessions, workshops, and activities, we aim to draw in
-                fresh talent, providing a launchpad for their web3 ambitions.
+              Empowering Web3 contributors through workshops, seminars, and hackathons. Learn, build, and engage with DAOs like Arbitrum & Optimism.
               </p>
-              <Link href="/programs/hackathon">
+              <Link href="/arbitrum">
                 <button
                   className={homeStyle.section3CardButton}
                   id={homeStyle.button7}

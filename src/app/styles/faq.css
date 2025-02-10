@@ -50,7 +50,6 @@
     grid-template-columns: repeat(auto-fill, minmax(50%, 2fr));
   }
   .faqs-box {
-    /* width: 100%; */
     min-width: 400px;
     display: flex;
     align-items: center;
@@ -106,6 +105,7 @@
     font-weight: 300;
     line-height: 132.5%; /* 18.55px */
     letter-spacing: 1.12px;
+    margin-top: 0.7rem;
   }
   
   .faqs-box:hover,

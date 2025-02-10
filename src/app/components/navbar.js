@@ -99,59 +99,16 @@ function Navbar() {
                 GOVERNANCE
               </Link>
             </li>
-            <li className={`nav-item  `}>
-              <Link
-                className="nav-link "
-                href="https://lamprosdao.notion.site/a2d67afc0ed84377918b536341374f0e?v=6e84b9a6c7b648bd86dc9b20a4804124"
-                onClick={() => handleNavClick()}
-                target="blank"
-              >
+
+            <li className="nav-item">
+              <Link href="/" className="nav-link ">
                 CONTRIBUTIONS
               </Link>
-            </li>
-
-            {/* <li className="nav-item dropdown ">
-              <div
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                CONTRIBUTIONS
+              <div className="dropdown">
+                <Link href="/arbitrum">Arbitrum</Link>
+                <Link href="/optimism">Optimism</Link>
               </div>
-
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li
-                  className={`dropdown-list   ${
-                    pathname == "/programs/hackathon" ? "active" : ""
-                  }`}
-                >
-                  <Link
-                    className="dropdown-item"
-                    href="/programs/hackathon"
-                    onClick={() => handleNavClick()}
-                  >
-                    Arbitrum
-                  </Link>
-                </li>
-                <li
-                  className={`dropdown-list   ${
-                    pathname == "/programs/hackathon" ? "active" : ""
-                  }`}
-                >
-                  <Link
-                    className="dropdown-item"
-                    href="/programs/hackathon"
-                    onClick={() => handleNavClick()}
-                  >
-                    Optimism
-                  </Link>
-                </li>
-              </ul>
-            </li> */}
-
+            </li>
             {/* <li className="nav-item dropdown ">
               <div
                 className="nav-link dropdown-toggle"

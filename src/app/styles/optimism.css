@@ -1,0 +1,317 @@
+.optimismMainBg {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    z-index: -1;
+    padding: 50px 0px;
+    background: url("../assets/images/about-bg.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .optimism-container {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    width: 100%;
+    color: white;
+  }
+  
+  .content-wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .main-heading {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  
+  .main-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    color: #e5e7eb;
+  }
+  
+  .pointer-text {
+    font-size: 1.2rem;
+    margin-top: 5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #00f0ff;
+  }
+  
+  .textop {
+    margin-bottom: 0;
+  }
+  
+  .mainheading {
+    color: #a6ff35;
+    text-align: center;
+    text-shadow: 0px 4px 36px rgba(0, 0, 0, 0.53);
+    font-size: 3.1rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    margin: 30px auto;
+    animation: slideIn 1.2s ease-in-out;
+  }
+  
+  .info {
+    text-align: left;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150.023%;
+    letter-spacing: 1px;
+    border-left: 4px solid white;
+    padding-left: 20px;
+  }
+  
+  .contributions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+  }
+  
+  .contribution-card {
+    flex: 0 1 calc(50% - 1rem); /* Take up roughly half the container width minus gap */
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .contribution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 240, 255, 0.1);
+  }
+  
+  .card-number {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contribution-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00f0ff;
+    font-weight: 600;
+  }
+  
+  .contribution-card p {
+    color: #e5e7eb;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 240, 255, 0.2) 0%,
+      rgba(0, 240, 255, 0.1) 100%
+    );
+    border-radius: 8px;
+    color: #00f0ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 240, 255, 0.3) 0%,
+      rgba(0, 240, 255, 0.2) 100%
+    );
+  }
+  
+  .link-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .see-more-container {
+    text-align: center;
+  }
+  
+  .see-more-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #00f0ff 0%, #00d1ff 100%);
+    border-radius: 12px;
+    color: #0a1b48;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .see-more-button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .optimismImg {
+    width: 50px;
+    height: auto;
+    margin-top: -10px;
+  }
+  
+  .opContainer {
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+  }
+  
+  .opMain {
+      border-radius: 100px;
+      border: 1px solid rgba(115, 88, 255, 0);
+      background: linear-gradient(
+        180deg,
+        rgba(0, 10, 255, 0.51) 0%,
+        rgba(14, 0, 99, 0.1) 100%,
+        rgba(14, 0, 99, 0.1) 100%
+      );
+      box-shadow: 0px 4px 178px 0px rgba(255, 255, 255, 0.09) inset;
+      backdrop-filter: blur(16px);
+      width: 75%;
+      position: relative;
+      flex-shrink: 0;
+      margin: 0 auto;
+      padding: 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      height: fit-content;
+  }
+
+  .ongoing {
+    cursor: not-allowed;
+  }
+
+  .contribution-card {
+    flex: 0 1 calc(50% - 1rem);
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    /* Add these new properties */
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Adjust this value based on your needs */
+}
+
+.contribution-card p {
+    color: #e5e7eb;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    /* Add this to allow content to grow but not push the button */
+    flex: 1;
+}
+
+.action-button {
+    margin-top: auto;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 240, 255, 0.2) 0%,
+        rgba(0, 240, 255, 0.1) 100%
+    );
+    border-radius: 8px;
+    color: #00f0ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.custom-class {
+    padding-top: 0px !important;
+}
+
+.customTitle {
+    font-size: 25px !important;
+    text-transform: none !important;
+    box-sizing: border-box !important;
+}
+
+.customBtn {
+    width: 100% !important;
+    /* padding: 50px; */
+}
+
+.customLast {
+    cursor: not-allowed !important;
+    opacity: 40%;
+}
+  
+  @media (max-width: 768px) {
+    .optimism-container {
+      padding: 2rem 1rem;
+    }
+  
+    .main-description {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .main-heading {
+      font-size: 1.75rem;
+    }
+  
+    .action-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .contribution-card {
+      flex: 0 1 calc(100% - 1rem);
+      max-width: 600px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contributions-grid {
+      gap: 1.5rem;
+      padding: 0 0.5rem;
+    }
+  
+    .contribution-card {
+      padding: 1.5rem;
+    }
+  }
+  
