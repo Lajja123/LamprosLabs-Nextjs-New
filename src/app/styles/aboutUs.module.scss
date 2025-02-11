@@ -60,6 +60,11 @@
   display: flex;
   z-index: 0;
 }
+.arbitrumImgMainDiv {
+  position: absolute;
+  display: flex;
+  z-index: 0;
+}
 .aboutUsDesc3 {
   width: 95%;
   margin: 0 auto;
@@ -89,10 +94,18 @@
   z-index: 0;
 }
 .aboutImg {
-  width: 40%;
+  width: 50%;
   height: 45%;
   position: relative;
-  right: 4.5rem;
+  right: 1rem;
+  transform: rotate(90deg);
+  animation: zoomInOut 4s infinite alternate;
+}
+.arbitrumImg {
+  width: 30%;
+  height: 45%;
+  position: relative;
+  right: 1rem;
   transform: rotate(90deg);
   animation: zoomInOut 4s infinite alternate;
 }
@@ -613,6 +626,12 @@
   }
   /* Section 1 */
   .aboutImg {
+    width: 85%;
+    position: relative;
+    transform: rotate(-45deg);
+  }
+
+  .arbitrumImg {
     width: 85%;
     position: relative;
     transform: rotate(-45deg);

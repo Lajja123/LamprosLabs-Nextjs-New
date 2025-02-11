@@ -79,31 +79,17 @@
 
 .tab-container {
   display: flex;
+  width: 100%;
+  justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 0.9rem;
-  background: rgba(255, 255, 255, 0.2);
+  margin-top: 6rem;
+  /* padding: 0.9rem; */
   border-radius: 12px;
-  width: fit-content;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   animation: slideUp 0.8s ease-out;
 }
 
-.tab-button.active::before {
-  opacity: 1;
-}
-
-.tab-button span {
-  position: relative;
-  z-index: 2;
-}
-
-.tab-button:hover:not(.active) {
-  background: rgba(0, 0, 0, 0.5);
-}
-
 .tab-button {
-  padding: 0.75rem 2rem;
+  padding: 0.35rem 1rem;
   border: none;
   border: 1.5px solid #a6ff35;
   border-radius: 8px;
@@ -118,6 +104,19 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.tab-button.active::before {
+  opacity: 1;
+}
+
+.tab-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.tab-button:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .tab-button::before {
@@ -144,7 +143,8 @@
 }
 
 .btnText {
-  font-size: 20px;
+  font-size: 18px;
+  margin-top: 2.5px;
 }
 
 .contriHeading::after {

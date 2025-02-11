@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import "../styles/optimism.css";
 import { ExternalLink } from "lucide-react";
-import aboutImg from "../../../public/governance/173.svg";
+import aboutImg from "../../../public/governance/175.svg";
 import Image from "next/image";
 import aboutStyle from "../styles/aboutUs.module.scss";
 import homeStyle from "../styles/home.module.scss";
@@ -146,7 +146,6 @@ const Optimism = () => {
                 rel="noopener noreferrer"
               >
                 Ongoing Project
-                <ExternalLink className="link-icon" />
               </a>
             </div>
           </div>

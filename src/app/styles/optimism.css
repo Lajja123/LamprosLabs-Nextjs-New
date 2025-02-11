@@ -5,6 +5,7 @@
     width: 100%;
     z-index: -1;
     padding: 50px 0px;
+    padding-top: 0;
     /* background: url("../assets/images/about-bg.webp");
     background-size: cover;
     background-repeat: no-repeat; */

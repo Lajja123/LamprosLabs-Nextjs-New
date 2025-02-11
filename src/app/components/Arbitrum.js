@@ -2,15 +2,15 @@
 import React from "react";
 import "../styles/arbitrum.css";
 import { ExternalLink } from "lucide-react";
-import aboutImg from "../../../public/governance/171.svg";
+import arbitrumImg from "../../../public/governance/171.svg";
 import Image from "next/image";
 import aboutStyle from "../styles/aboutUs.module.scss";
 
 const Arbitrum = () => {
   return (
     <div className="arbitrumMainBg">
-      <div className={aboutStyle.aboutImgMainDiv}>
-        <Image src={aboutImg} alt="" className={aboutStyle.aboutImg} />
+      <div className={aboutStyle.arbitrumImgMainDiv}>
+        <Image src={arbitrumImg} alt="" className={aboutStyle.arbitrumImg} />
       </div>
       <div className="arbitrum-container">
         <div className="content-wrapper">
@@ -35,7 +35,7 @@ const Arbitrum = () => {
 
             <div>
               <h1 className="main-heading">
-                Strengthening Arbitrum Governance & Research
+               Strengthening Arbitrum's Governance and Research
               </h1>
 
               <p className="info">
