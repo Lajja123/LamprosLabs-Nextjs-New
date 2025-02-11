@@ -167,7 +167,7 @@ function homeSection() {
               <h1 className={homeStyle.section3CardTitle}>Governance & Research</h1>
 
               <p className={homeStyle.section3CardDesc}>
-              Driving decentralized governance through research, proposal discussions, and active participation in Arbitrum & Optimism DAOs.
+              Driving decentralized governance through research, proposal discussions, and active participation in Arbitrum DAO and Optimism Collective.
               </p>
               <Link href="/governance">
                 <button
@@ -182,7 +182,7 @@ function homeSection() {
               </Link>
             </div>
           </div>
-          <div className={activeIndex === 3 ? "slick-active" : ""}>
+          <div className={activeIndex === 2 ? "slick-active" : ""}>
             <div className={homeStyle.section3Card}>
               <h1 className={homeStyle.section3CardTitle}>
               Workshops & Education

@@ -1,13 +1,13 @@
 .optimismMainBg {
     width: 100%;
     box-sizing: border-box;
-    position: relative;
+    /* position: relative; */
     width: 100%;
     z-index: -1;
     padding: 50px 0px;
-    background: url("../assets/images/about-bg.webp");
+    /* background: url("../assets/images/about-bg.webp");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
   }
   
   .optimism-container {

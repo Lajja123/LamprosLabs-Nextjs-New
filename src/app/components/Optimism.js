@@ -81,7 +81,7 @@ const Optimism = () => {
             👉 Here’s a look at our key contributions to Optimism DAO
           </p>
 
-          {/* <div className="contributions-grid">
+          <div className="contributions-grid">
             <div className="contribution-card">
               <div className="card-number">1️⃣</div>
               <h3>Optimism NumbaNERDs</h3>
@@ -149,9 +149,9 @@ const Optimism = () => {
                 <ExternalLink className="link-icon" />
               </a>
             </div>
-          </div> */}
+          </div>
 
-          <section
+          {/* <section
             className={`${homeStyle.homepageSecion3MainTemplate} custom-class`}
             // ref={section3Ref}
             smooth={true}
@@ -249,7 +249,7 @@ const Optimism = () => {
                 </div>
               </div>
             </Slider>
-          </section>
+          </section> */}
         </div>
       </div>
     </div>

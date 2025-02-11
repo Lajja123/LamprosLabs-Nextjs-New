@@ -393,18 +393,40 @@
   font-weight: 600;
   letter-spacing: 0.8rem;
   text-transform: uppercase;
+  margin-bottom: 4rem;
 }
 
 .timelineContainer {
   position: relative;
   width: 100%;
   padding: 40px 20px;
+  margin-top: 4rem;
 }
 
-.timelineLine {
+.headingAboutTimeline {
+  margin-bottom: 3rem !important;
+}
+
+.timelineItem {
+  position: relative;
+  background: rgba(0, 30, 60, 0.5);
+  border-radius: 20px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  height: 180px; /* Adjust to maintain uniform height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.timeLine {
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: rgba(0, 255, 255, 0.3);
   top: 50%;
   left: 0;
@@ -420,26 +442,12 @@
   margin: 0 auto;
 }
 
-.timelineItem {
-  position: relative;
-  background: rgba(0, 30, 60, 0.5);
-  border-radius: 20px;
-  padding: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .timelineItem:nth-child(odd) {
-  margin-bottom: 437px;
+  margin-bottom: 449px;
 }
 
 .timelineItem:nth-child(even) {
-  margin-top: 347px;
+  margin-top: 327px;
 }
 
 .dot {
@@ -481,15 +489,24 @@
   color: rgb(0, 255, 255);
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 6px;
+  min-height: 40px; /* Ensure consistent title placement */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .description {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
   line-height: 1.6;
-  text-align: left;
+  text-align: center;
+  min-height: 60px; /* Adjust to match longest content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 @media (max-width: 1024px) {
   .timelineContent {
@@ -840,7 +857,6 @@
     font-size: 2rem;
     letter-spacing: 7px;
     color: #0ff;
-    margin-bottom: 20px !important;
   }
   .union1 {
     height: 80%;
@@ -1098,7 +1114,6 @@
     letter-spacing: 5px;
     line-height: 150%;
     margin: 0 auto;
-    margin-bottom: 0px !important;
   }
   .union1 {
     height: 73%;

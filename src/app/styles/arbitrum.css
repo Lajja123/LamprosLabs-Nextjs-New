@@ -1,13 +1,13 @@
 .arbitrumMainBg {
   width: 100%;
   box-sizing: border-box;
-  position: relative;
+  /* position: relative; */
   width: 100%;
   z-index: -1;
   padding: 50px 0px;
-  background: url("../assets/images/about-bg.webp");
+  /* background: url("../assets/images/about-bg.webp");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 
 .arbitrum-container {
@@ -88,7 +88,7 @@
 
 .contribution-card {
   flex: 0 1 calc(50% - 1rem); /* Take up roughly half the container width minus gap */
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+  background: linear-gradient(180deg, rgba(0, 10, 255, 0.51) 0%, rgba(14, 0, 99, 0.1) 100%, rgba(14, 0, 99, 0.1) 100%) !important;
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 2rem;
@@ -100,7 +100,7 @@
 
 .contribution-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.1);
+  box-shadow: 10px 8px 30px rgba(0, 240, 255, 0.1);
 }
 
 .card-number {

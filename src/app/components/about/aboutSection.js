@@ -28,44 +28,44 @@ export default function aboutPage() {
 
   const items = [
     {
-      title: "Hackathon Highlights",
-      description:
-        "Lampros DAO stands tall in global hackathons, leaving imprints across diverse blockchains.",
+      date: "Oct '23",
+      title:
+        "Formation of Lampros DAO",
     },
     {
-      title: "Journey From Web2 To Web3",
-      description:
-        "We've guided 30+ developers through the transformation, turning passion into web3 expertise.",
+      date: "Nov '23 - Feb '24",
+      title:
+        "Numbanerds Program (Optimism Collective)",
     },
     {
-      title: "Opportunities At Lampros",
-      description:
-        "For the new and the curious, Lampros is a beacon. Learn and earn in the world of web3.",
+      date: "Mar '24 - Apr '24",
+      title:
+        "Open Data Community (ThankARB, Arbitrum DAO)",
     },
     {
-      title: "Global Workshops",
-      description:
-        "Broaden your horizons. Our sessions offer both global exposure and skill refinement.",
+      date: "Mar '24",
+      title:
+        "Becoming a Delegate in Arbitrum & Optimism",
     },
     {
-      title: "Hackathon Highlights part2",
-      description:
-        "Lampros DAO stands tall in global hackathons, leaving imprints across diverse blockchains.",
+      date: "Jun '24 - Dec '24",
+      title:
+        "Arbitrum Governance & Development Initiative (AGDI)",
     },
     {
-      title: "Journey From Web2 To Web3 part2",
-      description:
-        "We've guided 30+ developers through the transformation, turning passion into web3 expertise.",
+      date: "Jun '24 - Nov '24",
+      title:
+        "LTIPP Research Bounty (Arbitrum DAO)",
     },
     {
-      title: "Opportunities At Lampros part2",
-      description:
-        "For the new and the curious, Lampros is a beacon. Learn and earn in the world of web3.",
+      date: "Jun '24 - Jan '25",
+      title:
+        "Contributing to Optimism Foundation Mission Requests",
     },
     {
-      title: "Global Workshops part2",
-      description:
-        "Broaden your horizons. Our sessions offer both global exposure and skill refinement.",
+      date: "Dec '24",
+      title:
+        "Ranked in Top 5 Active Delegate in Arbitrum DAO (Delegate Incentive Program)",
     },
   ];
 
@@ -532,26 +532,26 @@ export default function aboutPage() {
 
           <section className={aboutStyle.timelineContainer}>
             <Fade bottom duration={2000} distance="20px">
-              <h1 className={`${aboutStyle["sec4aboutheading"]} pb-4`}>
+              <h1 className={`${aboutStyle["sec4aboutheading"]} headingAboutTimeline`}>
                 Our Web3 Journey
-              </h1>
+              </h1> 
             </Fade>
 
-            <div className={aboutStyle.timelineLine}></div>
+            <div className={aboutStyle.timeLine}></div>
 
             <div className={aboutStyle.timelineContent}>
               {items.map((item, index) => (
                 <Fade
                   key={index}
-                  duration={2000}
+                  duration={1500}
                   delay={500 + index * 100}
                   bottom={index % 2 === 0}
                   top={index % 2 !== 0}
                 >
                   <div className={aboutStyle.timelineItem}>
-                    <div className={aboutStyle.heading}>{item.title}</div>
+                    <div className={aboutStyle.heading}>{item.date}</div>
                     <div className={aboutStyle.description}>
-                      {item.description}
+                      {item.title}
                     </div>
                     <div className={aboutStyle.connector}></div>
                     <div className={aboutStyle.dot}></div>

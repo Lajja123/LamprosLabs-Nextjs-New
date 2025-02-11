@@ -100,15 +100,29 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link href="/" className="nav-link ">
+            <li
+              className={`nav-item  ${
+                pathname == "/contributions" ? "active" : ""
+              }`}
+            >
+              <Link
+                className="nav-link"
+                href="/contributions"
+                onClick={() => handleNavClick()}
+              >
+                CONTRIBUTIONS
+              </Link>
+            </li>
+
+            {/* <li className="nav-item">
+              <Link href="/contributions" className="nav-link ">
                 CONTRIBUTIONS
               </Link>
               <div className="dropdown">
                 <Link href="/arbitrum">Arbitrum</Link>
                 <Link href="/optimism">Optimism</Link>
               </div>
-            </li>
+            </li> */}
             {/* <li className="nav-item dropdown ">
               <div
                 className="nav-link dropdown-toggle"

@@ -122,7 +122,7 @@
   display: none !important;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 /* Show dropdown only when directly hovering over the specific dropdown container */
@@ -130,7 +130,7 @@
   display: block !important;
   opacity: 1;
   visibility: visible;
-  pointer-events: auto;
+  /* pointer-events: auto; */
 }
 
 /* Ensure no interaction when the div is not present or commented out */
@@ -138,7 +138,7 @@
   display: none !important;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .nav-item.dropdown:hover .dropdown-menu {
