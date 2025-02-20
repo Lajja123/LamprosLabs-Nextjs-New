@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { MdExpandLess, MdOutlineExpandMore } from "react-icons/md";
+import { ExternalLink } from "lucide-react";
 import styles from "../../styles/vote.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -109,8 +110,7 @@ const VoteSection = () => {
 
       if (data.success && data.data) {
         const validProposals = data.data.filter(
-          (proposal) =>
-            proposal["Commented By"]
+          (proposal) => proposal["Commented By"]
         );
 
         const transformedProposals = await Promise.allSettled(
@@ -194,83 +194,86 @@ const VoteSection = () => {
     fetchProposals();
   }, [fetchProposals, selectedProtocol]);
 
- // Content processing function
- const processForumContent = (content) => {
-  const baseUrl = "https://forum.arbitrum.foundation";
+  // Content processing function
+  const processForumContent = (content) => {
+    const baseUrl = "https://forum.arbitrum.foundation";
 
-  // Replace relative URLs with absolute URLs
-  const updatedContent = content.replace(
-    /href="\/(?!\/)/g, // Match hrefs that start with a single "/"
-    `href="${baseUrl}/`
-  );
+    // Replace relative URLs with absolute URLs
+    const updatedContent = content.replace(
+      /href="\/(?!\/)/g, // Match hrefs that start with a single "/"
+      `href="${baseUrl}/`
+    );
 
-  // Ensure all anchor tags open in a new tab with security attributes
-  const updatedLinks = updatedContent.replace(
-    /<a\b([^>]*?)>/g, // Match all anchor tags
-    '<a target="_blank" rel="noopener noreferrer" $1>'
-  );
+    // Ensure all anchor tags open in a new tab with security attributes
+    const updatedLinks = updatedContent.replace(
+      /<a\b([^>]*?)>/g, // Match all anchor tags
+      '<a target="_blank" rel="noopener noreferrer" $1>'
+    );
 
-  // Remove HTML tags for images
-  const contentWithoutImages = updatedLinks.replace(/<img[^>]*>/g, "");
+    // Remove HTML tags for images
+    const contentWithoutImages = updatedLinks.replace(/<img[^>]*>/g, "");
 
-  // Process blockquotes with username
-  const processedContent = contentWithoutImages.replace(
-    /<aside[^>]*data-username="([^"]*)"[^>]*>.*?<blockquote>/gs,
-    (match, username) => `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
-  );
+    // Process blockquotes with username
+    const processedContent = contentWithoutImages.replace(
+      /<aside[^>]*data-username="([^"]*)"[^>]*>.*?<blockquote>/gs,
+      (match, username) =>
+        `<div class="${styles.quotedText}"><blockquote><span class="${styles.quoteUsername}">${username}:</span><br/>`
+    );
 
-  // Clean up closing tags
-  const contentProcessed = processedContent.replace(
-    /<\/blockquote><\/aside>/g,
-    "</blockquote></div>"
-  );
+    // Clean up closing tags
+    const contentProcessed = processedContent.replace(
+      /<\/blockquote><\/aside>/g,
+      "</blockquote></div>"
+    );
 
-  // Extract mentioned usernames from the 'cooked' property
-  const mentionedUsernames = extractMentionedUsernames(contentProcessed);
+    // Extract mentioned usernames from the 'cooked' property
+    const mentionedUsernames = extractMentionedUsernames(contentProcessed);
 
-  // Apply custom CSS classes to the mentioned usernames
-  const finalContent = contentProcessed.replace(
-    /@(\w+)/g,
-    (match, username) => {
-      if (mentionedUsernames.includes(username)) {
-        return `<a class="${styles.mentionedUsernamesStyle}" href="https://forum.arbitrum.foundation/u/${username}" target="_blank" rel="noopener noreferrer">@${username}</a>`;
-      } else {
-        return match;
+    // Apply custom CSS classes to the mentioned usernames
+    const finalContent = contentProcessed.replace(
+      /@(\w+)/g,
+      (match, username) => {
+        if (mentionedUsernames.includes(username)) {
+          return `<a class="${styles.mentionedUsernamesStyle}" href="https://forum.arbitrum.foundation/u/${username}" target="_blank" rel="noopener noreferrer">@${username}</a>`;
+        } else {
+          return match;
+        }
       }
-    }
-  );
+    );
 
-  const processedContentFinal = finalContent.replace(
-    /href="(https:\/\/forum.arbitrum.foundation\/[^"]+)"/g,
-    (match, url) => {
-      if (url.includes('/u/')) {
-        // Links to user profiles
-        return `href="${url}" class="${styles.mentionedUsernamesStyle}" target="_blank" rel="noopener noreferrer"`;
-      } else {
-        // Other links
-        return `href="${url}" class="${styles.mentionedHyperlinkStyle}" target="_blank" rel="noopener noreferrer"`;
+    const processedContentFinal = finalContent.replace(
+      /href="(https:\/\/forum.arbitrum.foundation\/[^"]+)"/g,
+      (match, url) => {
+        if (url.includes("/u/")) {
+          // Links to user profiles
+          return `href="${url}" class="${styles.mentionedUsernamesStyle}" target="_blank" rel="noopener noreferrer"`;
+        } else {
+          // Other links
+          return `href="${url}" class="${styles.mentionedHyperlinkStyle}" target="_blank" rel="noopener noreferrer"`;
+        }
       }
-    }
-  );
+    );
 
-  return processedContentFinal;
-};
+    return processedContentFinal;
+  };
 
-const extractMentionedUsernames = (content) => {
-  // Use a regular expression or other parsing method to extract the mentioned usernames from the 'cooked' property
-  const regex = /@(\w+)/g;
-  const matches = content.match(regex);
-  return matches ? matches.map((match) => match.slice(1)) : [];
-};
+  const extractMentionedUsernames = (content) => {
+    // Use a regular expression or other parsing method to extract the mentioned usernames from the 'cooked' property
+    const regex = /@(\w+)/g;
+    const matches = content.match(regex);
+    return matches ? matches.map((match) => match.slice(1)) : [];
+  };
 
-const formatDate = (date) => {
-  console.log("date", date);
-  return date ? new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }) : "";
-};
+  const formatDate = (date) => {
+    console.log("date", date);
+    return date
+      ? new Date(date).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })
+      : "";
+  };
 
   const SkeletonLoader = () => {
     return (
@@ -490,7 +493,10 @@ const formatDate = (date) => {
           rel="noopener noreferrer"
           className={styles.btnGovernance}
         >
-          See more
+          <div className={styles.btnSeeMore}>
+          <span>See more</span>
+          <ExternalLink className={styles.linkIcon} />
+          </div>
         </a>
       </div>
 
@@ -511,16 +517,40 @@ const formatDate = (date) => {
             future of decentralized ecosystems.
           </div>
         </div>
-        <Link
-          href="https://app.chora.club/arbitrum/0xa2d590fee197c0b614fe7c3e10303327f38c0dc3?active=info"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.link}
-        >
-          <button className={styles.delegateNowButton}>
-            Delegate <RiArrowRightUpLine className={styles.upErrow} />
-          </button>
-        </Link>
+        <div className={styles.btnGovernanceContainer}>
+          <Link
+            href="https://app.chora.club/arbitrum/0xa2d590fee197c0b614fe7c3e10303327f38c0dc3?active=info"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            <button className={styles.delegateNowButton}>
+              <Image
+                src="/governance/arbitrum.svg"
+                alt="arbitrum logo"
+                width={30}
+                height={40}
+              />
+             <span className={styles.textBtn}>Delegate on Arbitrum <ExternalLink className={styles.linkIcon} /></span> 
+            </button>
+          </Link>
+          <Link
+            href="https://app.chora.club/optimism/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25?active=info"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            <button className={styles.delegateNowButton}>
+              <Image
+                src="/governance/optimism.svg"
+                alt="arbitrum logo"
+                width={30}
+                height={40}
+              />
+              <span className={styles.textBtn}>Delegate on Optimism <ExternalLink className={styles.linkIcon} /></span>
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

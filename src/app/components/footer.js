@@ -49,7 +49,7 @@ export default function Footer() {
           <Link href="/governance" className={footerStyles.footerLink} onClick={scrollToTop}>
             Governance
           </Link>
-          <Link href="https://lamprosdao.notion.site/a2d67afc0ed84377918b536341374f0e?v=6e84b9a6c7b648bd86dc9b20a4804124" className={footerStyles.footerLink} onClick={scrollToTop}>
+          <Link href="/contributions" className={footerStyles.footerLink} onClick={scrollToTop}>
             Contributions
           </Link>
           {/* <Link href="/dao-roadmap" className={footerStyles.footerLink} onClick={scrollToTop}>

@@ -97,10 +97,10 @@ function FAQs() {
       gsap.from(".faqs-box", {
         opacity: 0,
         y: 30,
-        stagger: 0.2,
+        stagger: 0.075,
         scrollTrigger: {
           trigger: ".faqs-main",
-          start: "top 75%", // Change start position to trigger the animation
+          start: "top 90%", // Change start position to trigger the animation
 
           toggleActions: "play none none reverse",
         },

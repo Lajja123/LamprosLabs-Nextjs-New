@@ -29,60 +29,57 @@ export default function aboutPage() {
   const items = [
     {
       date: "Oct '23",
-      title:
-        "Formation of Lampros DAO",
+      title: "Formation of Lampros DAO",
+      // link: "#",
     },
     {
       date: "Nov '23 - Feb '24",
-      title:
-        "Numbanerds Program (Optimism Collective)",
+      title: "NumbaNERDs Program (Optimism Collective)",
+      link: "https://app.dework.xyz/optimism-community/contributors",
     },
     {
       date: "Mar '24 - Apr '24",
-      title:
-        "Open Data Community (ThankARB, Arbitrum DAO)",
+      title: "Open Data Community (ThankARB, Arbitrum DAO)",
+      link: "https://snapshot.box/#/s:opendatacommunity.eth/proposals",
     },
     {
       date: "Mar '24",
-      title:
-        "Becoming a Delegate in Arbitrum & Optimism",
+      title: "Becoming a delegate in Arbitrum DAO and Optimism Collective",
+      link: "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642?u=euphoria",
     },
     {
       date: "Jun '24 - Dec '24",
-      title:
-        "Arbitrum Governance & Development Initiative (AGDI)",
+      title: "Arbitrum Governance & Development Initiative (AGDI)",
+      link: "https://forum.arbitrum.foundation/t/arbitrum-governance-and-development-initiative-lampros-labs-dao/26315?u=euphoria",
     },
     {
       date: "Jun '24 - Nov '24",
-      title:
-        "LTIPP Research Bounty (Arbitrum DAO)",
+      title: "LTIPP Research Bounty (Arbitrum DAO)",
+      link: "https://forum.arbitrum.foundation/t/team-lampros-labs-dao-ltipp-research-bounty-reports/27015/3?u=euphoria",
     },
     {
       date: "Jun '24 - Jan '25",
-      title:
-        "Contributing to Optimism Foundation Mission Requests",
+      title: "Contributing to Optimism Foundation Mission Requests",
+      link: "https://github.com/ethereum-optimism/ecosystem-contributions/issues/183#issuecomment-2385745249",
     },
     {
       date: "Dec '24",
       title:
         "Ranked in Top 5 Active Delegate in Arbitrum DAO (Delegate Incentive Program)",
+      link: "https://arbitrum.karmahq.xyz/delegate-compensation?month=december&year=2024",
     },
   ];
 
   return (
     <div>
-        <ScrollBtn
-          section1Ref={section1Ref}
-          section2Ref={section2Ref}
-          section3Ref={section3Ref}
-        />
+      <ScrollBtn
+        section1Ref={section1Ref}
+        section2Ref={section2Ref}
+        section3Ref={section3Ref}
+      />
       <div className={aboutStyle.aboutUsMainBg}>
-        <div
-          className={aboutStyle.aboutUsMain}
-          smooth={true}
-          duration={600}
-        >
-          <section  className={`${aboutStyle.section1AboutUs} py-sm-5 py-3`}>
+        <div className={aboutStyle.aboutUsMain} smooth={true} duration={600}>
+          <section className={`${aboutStyle.section1AboutUs} py-sm-5 py-3`}>
             <div className={aboutStyle.aboutImgMainDiv}>
               <Image src={aboutImg} alt="" className={aboutStyle.aboutImg} />
             </div>
@@ -94,7 +91,7 @@ export default function aboutPage() {
                 About Us
               </div>
 
-              <Fade duration={1500} delay={100}>
+              <Fade duration={1200} delay={100}>
                 <div className={aboutStyle.aboutSec1Box}>
                   <p className={aboutStyle.aboutUsSection1CardDesc}>
                     Lampros DAO was founded by a group of individuals with a
@@ -531,33 +528,36 @@ export default function aboutPage() {
           </section> */}
 
           <section className={aboutStyle.timelineContainer}>
-            <Fade bottom duration={2000} distance="20px">
-              <h1 className={`${aboutStyle["sec4aboutheading"]} headingAboutTimeline`}>
+            <Fade bottom duration={1000} distance="20px">
+              <h1
+                className={`${aboutStyle.sec4aboutheading} headingAboutTimeline`}
+              >
                 Our Web3 Journey
-              </h1> 
+              </h1>
             </Fade>
 
-            <div className={aboutStyle.timeLine}></div>
-
-            <div className={aboutStyle.timelineContent}>
-              {items.map((item, index) => (
-                <Fade
-                  key={index}
-                  duration={1500}
-                  delay={500 + index * 100}
-                  bottom={index % 2 === 0}
-                  top={index % 2 !== 0}
-                >
-                  <div className={aboutStyle.timelineItem}>
-                    <div className={aboutStyle.heading}>{item.date}</div>
-                    <div className={aboutStyle.description}>
-                      {item.title}
-                    </div>
-                    <div className={aboutStyle.connector}></div>
-                    <div className={aboutStyle.dot}></div>
-                  </div>
-                </Fade>
-              ))}
+            <div className={aboutStyle.timelineWrapper}>
+              <div className={aboutStyle.timeLine}></div>
+              <div className={aboutStyle.timelineContent}>
+                {items.map((item, index) => (
+                  <Fade
+                    key={index}
+                    duration={900}
+                    delay={500 + index * 100}
+                    className={aboutStyle.fadeClass}
+                  >
+                      <div className={aboutStyle.timelineItem} onClick={() => item.link && window.open(item.link, "_blank", "noopener,noreferrer")}
+                        style={{ cursor: item.link ? "pointer" : "default" }}>
+                        <div className={aboutStyle.heading}>{item.date}</div>
+                        <div className={aboutStyle.description}>
+                          {item.title}
+                        </div>
+                        <div className={aboutStyle.connector}></div>
+                        <div className={aboutStyle.dot}></div>
+                      </div>
+                  </Fade>
+                ))}
+              </div>
             </div>
           </section>
         </div>

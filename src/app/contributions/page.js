@@ -33,8 +33,8 @@ export default function ContributionsPage() {
           <Image
             src="/governance/arbitrum.svg"
             alt="arbitrum logo"
-            width={30}
-            height={40}
+            width={50}
+            height={50}
           />
           <span className="btnText">Arbitrum</span>
         </button>
@@ -45,8 +45,8 @@ export default function ContributionsPage() {
           <Image
             src="/governance/optimism.svg"
             alt="optimism logo"
-            width={30}
-            height={40}
+            width={50}
+            height={50}
           />
           <span className="btnText">Optimism</span>
         </button>

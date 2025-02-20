@@ -118,7 +118,7 @@ function homeSection() {
               </p>
             </Fade>
           </div>
-          <Fade bottom duration={2000} distance="20px">
+          <Fade bottom duration={1000} distance="20px">
             <Link href="/about-us">
               <button
                 id={homeStyle.button7}
@@ -207,19 +207,11 @@ function homeSection() {
         </Slider>
       </section>
       <section className={homeStyle.homepageSecion4Main}>
-        <Fade bottom duration={2000} distance="2px">
+        <Fade bottom duration={1000} distance="2px">
           <h1 className={homeStyle.sectio4Title}>FAQS</h1>
         </Fade>
         <div className={homeStyle.faqAccordionMain}>
-          {/* <Fade bottom duration={2000} distance="30px">
-            {question.map((faq) => (
-              <FAQ
-                key={faq.question}
-                question={faq.question}
-                answer={faq.answer}
-              />
-            ))}
-          </Fade> */}
+          
           <FAQs />
         </div>
       </section>

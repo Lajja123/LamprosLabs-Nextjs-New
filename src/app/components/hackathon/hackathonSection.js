@@ -30,7 +30,7 @@ function hackathonSection() {
             <Image src={sec1bg} alt=""></Image>
           </div>
 
-          <Fade duration={1500} delay={100}>
+          <Fade duration={1200} delay={100}>
             <div className={`${hackStyle["sec1box"]} col-xl-9 col-8 col-sm-9`}>
               <div className={hackStyle.sec1boxtitle}>
                 Unleash Your Blockchain Potential
@@ -71,7 +71,7 @@ function hackathonSection() {
           duration={600}
         >
           <div>
-            <Fade bottom duration={2000} distance="50px">
+            <Fade bottom duration={1000} distance="50px">
               <div className={hackStyle.sec2heading}>Why Join?</div>
             </Fade>
           </div>
@@ -134,7 +134,7 @@ function hackathonSection() {
           duration={600}
         >
           <div>
-            <Fade bottom duration={2000} distance="5px">
+            <Fade bottom duration={1000} distance="5px">
               <div className={hackStyle.sec3heading}>Upcoming Hackathons</div>
             </Fade>
           </div>

@@ -91,9 +91,9 @@
   flex: 0 1 calc(50% - 1rem); /* Take up roughly half the container width minus gap */
   background: linear-gradient(180deg, rgba(0, 10, 255, 0.51) 0%, rgba(14, 0, 99, 0.1) 100%, rgba(14, 0, 99, 0.1) 100%) !important;
   backdrop-filter: blur(10px);
+  border: 1px solid #a6ff35 !important;
   border-radius: 16px;
   padding: 2rem;
-  border: 1px solid rgba(0, 240, 255, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -140,11 +140,8 @@
 }
 
 .action-button:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 240, 255, 0.3) 0%,
-    rgba(0, 240, 255, 0.2) 100%
-  );
+  background: #A6FF35 !important;
+  color: black;
 }
 
 .link-icon {
@@ -157,17 +154,27 @@
 }
 
 .see-more-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(90deg, #00f0ff 0%, #00d1ff 100%);
-  border-radius: 12px;
-  color: #0a1b48;
+  border-radius: 15px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
+  background: #a6ff35;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin: 40px auto;
+  padding: 1rem 2rem;
+  border: none;
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 174.523%;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
 }
 
 .see-more-button:hover {
